@@ -1,0 +1,19 @@
+@import url(https://fonts.googleapis.com/css2);
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI',Verdana, Geneva, Tahoma, sans-serif;
+}
+body{
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+}
+header{
+    background-color: #091437;
+    color: #f0f0f0;
+    padding: 10px 0;
+    text-align: center;
+}
