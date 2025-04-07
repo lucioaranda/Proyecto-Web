@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Catalogo De Productos</title>
+        <link rel="stylesheet" href="styles.css"> 
     </head>
     <body>
         <header>
@@ -17,24 +18,31 @@
                 </ul>
             </nav>
         </header>
-        <main>
-            <section>
+    <div class="container">
+        <aside>
+            <h2>Filtros</h2>
+            <input type="text" placeholder="Buscar Productos">
+            <label><input type="checkbox">Ofertas</label>
+            <label><input type="checkbox">Envio gratis</label>
+        </aside>
+        <main class="container" id="main">
+            <section class="product-grid">
                 <h2>Productos destacados</h2>
-                <article>
+                <article class="product-card">
                     <img src="img/imagen.jpg" alt="Nombre del producto">
                     <h3>Nombre del producto</h3>
                     <p>Descripcion del producto</p>
                     <p>Precio $100</p>
                     <button>Comprar</button>
                 </article>
-                <article>
+                <article class="product-card">
                     <img src="img/imagen.jpg" alt="Nombre del producto">
                     <h3>Nombre del producto</h3>
                     <p>Descripcion del producto</p>
                     <p>Precio $100</p>
                     <button>Comprar</button>
                 </article>
-                <article>
+                <article class="product-card">
                     <img src="img/imagen.jpg" alt="Nombre del producto">
                     <h3>Nombre del producto</h3>
                     <p>Descripcion del producto</p>
@@ -43,6 +51,7 @@
                 </article>
             </section>
         </main>
+    </div>
         <footer>
             <p>Todos los derechos reservados</p>
         </footer>
