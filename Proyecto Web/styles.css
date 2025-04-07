@@ -12,8 +12,29 @@ body{
     line-height: 1.5;
 }
 header{
-    background-color: #091437;
+    background-color: #333;
+    color: #f7f7f7;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav{
+    max-width: 900px;
+    margin: 1px;
+    background-color: #333;
+    font-size: 20px;
+}
+.menu-vertical{
+    font-size: 15px;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.menu-vertical a {
     color: #f0f0f0;
-    padding: 10px 0;
-    text-align: center;
+    text-decoration: none;
 }
