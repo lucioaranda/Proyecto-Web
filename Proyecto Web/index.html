@@ -21,14 +21,18 @@
     <div class="container">
         <aside>
             <h2>Filtros</h2>
-            <input type="text" placeholder="Buscar Productos">
-            <label><input type="checkbox">Ofertas</label>
-            <label><input type="checkbox">Envio gratis</label>
+            <div class="search-filter">
+                <input type="text" placeholder="Buscar Productos">
+            </div>
+            <div>
+                <label><input type="checkbox">Ofertas</label>
+                <label><input type="checkbox">Envio gratis</label>
+            </div>
         </aside>
         <main class="container" id="main">
             <section class="product-grid">
                 <h2>Productos destacados</h2>
-                <article class="product-card">
+                <article class="product-card" id="card-1">
                     <img src="img/imagen.jpg" alt="Nombre del producto">
                     <h3>Nombre del producto</h3>
                     <p>Descripcion del producto</p>

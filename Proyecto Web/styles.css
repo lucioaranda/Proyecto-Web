@@ -14,7 +14,7 @@ body{
 header{
     background-color: #333;
     color: #f7f7f7;
-    padding: 10px 20px;
+    padding: 9px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,4 +37,55 @@ nav{
 .menu-vertical a {
     color: #f0f0f0;
     text-decoration: none;
+}
+
+.container{
+    display: flex;
+    min-height: calc(100vh - 170px);
+}
+
+aside{
+    width: 200px;
+    padding: 5px;
+    border-right: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+main{
+    padding: 0px 10px 10px 15px;
+}
+
+.product-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    gap: 20px;
+    padding-top: 10px;
+    
+}
+
+.product-card{
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 10px 10px 20px rgba(62, 62, 62, 0);
+    img{
+        width: 100%;
+    }
+    button{
+        float: right;
+        background-color: #091437;
+        color: #fff;
+        padding: 2px;
+        border-radius: 2px;
+    }
+}
+
+footer{
+    padding-top: 40px;
+    height: 100px;
+    display: block;
+    background-color: #091437;
+    color: #fff;
+    text-align: center;
+    font-size: 0.8rem;
 }
