@@ -61,6 +61,9 @@ aside{
     width: 220px;
     padding: 5px;
 }
+aside h2{
+    text-align: center;
+}
 
 main{
     padding: 0px 10px 10px 15px;
@@ -85,6 +88,7 @@ footer {
     
 }
 .product-grid h2{
+    text-align: center;
     grid-column: 1/-1;
 }
 
@@ -176,7 +180,7 @@ footer {
     transition: 0.4s;
 }
 .slide input:checked + .slider{
-    background-color: #3393ff;
+    background-color: #14b263;
 }
 .slide input:checked + .slider::before{
     transform: translateX(26px);
@@ -203,3 +207,19 @@ footer {
     background-color: transparent;
     cursor: pointer;
 }
+
+.search-filter {
+    padding: 10px;
+  }
+  
+  .search-filter input[type="text"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
