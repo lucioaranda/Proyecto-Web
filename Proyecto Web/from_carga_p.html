@@ -3,38 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos/style_form.css">
+    <link rel="icon" href="img's/icono-vet-2.png" type="image/png">
     <title>Carga de Productos</title>
 </head>
 <body>
-    <h2 style="text-align: center;">Subir Producto</h2>
-    <form action="" method="post">
-        <label for="nombre">Nombre del Producto:</label>
-        <input type="text" id="nombre" name="nombre" required>
-        <br>
-        <br>
-        <label for="imagen">Imagen del producto:</label>
-        <input type="file" id="imagen" name="imagen" required>
-        <br>
-        <br>
-        <label for="categoria">Categoria:</label>
-        <select id="categoria" name="categoria" required>
-            <option value="Electronica">Electronica</option>
-            <option value="Ropa">Ropa</option>
-            <option value="Hogar">Hogar</option>
-            <option value="Otros">Otros</option>
-        </select>
-        <br>
-        <br>
-        <label for="precio">Precio:</label>
-        <input type="number" id="precio" name="precio" required>
-        <br>
-        <br>
-        <label for="descripcion">Descripcion:</label>
-        <textarea name="" id="descripcion" cols="60" rows="1" placeholder="Ingrese una descripción del producto" required></textarea>
-        <br>
-        <br>
-        <button type="submit">Subir producto</button>
+    <h2 class="form-title">Subir Producto</h2>
+    <form class="product-form" action="" method="post">
+        <div class="form-group">
+            <label for="nombre" class="form-label">Nombre del Producto:</label>
+            <input type="text" id="nombre" name="nombre" class="form-input" required>
+        </div>
+        <div class="form-group">
+            <label for="imagen" class="form-label">Imagen del producto:</label>
+        <div class="file-upload">
+            <input type="file" id="imagen" name="imagen" class="form-input-img" required>
+            <label for="imagen" class="file-loader">Elegir archivo</label>
+            <span class="file-name">Ningún archivo seleccionado</span>
+        </div>
+        </div>
+        <div class="form-group">
+            <label for="categoria" class="form-label">Categoría:</label>
+            <select id="categoria" name="categoria" class="form-input" required>
+                <option class="option" value="Electronica">Electrónica</option>
+                <option class="option" value="Ropa">Ropa</option>
+                <option class="option" value="Hogar">Hogar</option>
+                <option class="option" value="Otros">Otros</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="precio" class="form-label">Precio:</label>
+            <input type="number" id="precio" name="precio" class="form-input" required>
+        </div>
+        <div class="form-group">
+            <label for="descripcion" class="form-label">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" class="form-input" placeholder="Ingrese una descripción del producto" required></textarea>
+        </div>
+        <button type="submit" class="button">Subir producto</button>
     </form>
 </body>
-</html>
 </html>

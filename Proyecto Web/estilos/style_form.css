@@ -1,0 +1,109 @@
+@import url(https://fonts.googleapis.com/css2);
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI',Verdana, Geneva, Tahoma, sans-serif;
+}
+body {
+    background-color: #f0f0f0;
+}
+.form-title {
+    text-align: center;
+    color: #333;
+    margin-top: 40px;
+    font-size: 28px;
+}
+.product-form {
+    background-color: #ffffff;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.product-form:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+}
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+.form-input-img{
+    opacity: 0;
+    position: absolute;
+    width: 130px;
+    height: 40px;
+    cursor: pointer;
+}
+.option{
+    cursor: pointer;
+}
+textarea.form-input {
+    resize: vertical;
+    min-height: 80px;
+}
+.button {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #218838;
+}
+.file-upload {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.form-input-file {
+    position: absolute;
+    width: 130px;
+    height: 40px;
+    cursor: pointer;
+}
+.file-loader{
+    background-color: #28a745;
+    color: white;
+    margin-top: 8px;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+.file-loader:hover{
+    background-color: #218838;
+}
+.file-name {
+    font-size: 14px;
+    color: #555;
+    font-style: italic;
+}
+select.form-input {
+    cursor: pointer;
+}
