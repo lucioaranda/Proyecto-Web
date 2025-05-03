@@ -24,6 +24,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 .icono-vet{
     width: 30px;
@@ -287,7 +288,6 @@ footer {
 
 @media (max-width: 1200px) {
     .top-menu {
-        grid-template-columns:(3, 1fr);
         font-size: 14px;
     }
 
@@ -323,12 +323,10 @@ footer {
 
 @media (max-width: 768px) {
     .top-menu {
-        grid-template-columns: repeat(2, 1fr);
         font-size: 14px;
     }
 
     .container {
-        grid-template-columns: 1fr;
         padding: 15px;
     }
 
@@ -400,11 +398,9 @@ footer {
         height: 45px;
     }
     .container {
-        grid-template-columns: 1fr;
         display: block;
     }
     .product-grid {
-        grid-template-columns: 1fr;
         gap: 1px;
     }
     .product-grid h2{
