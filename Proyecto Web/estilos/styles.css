@@ -15,8 +15,6 @@ body{
     color: #333;
     font-size: 16px;
     line-height: 1.5;
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
 }
 header{
@@ -77,6 +75,11 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px 0;
+    background-color: #091437;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
 .product-grid{
@@ -284,7 +287,7 @@ footer {
 
 @media (max-width: 1200px) {
     .top-menu {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns:(3, 1fr);
         font-size: 14px;
     }
 
@@ -312,6 +315,12 @@ footer {
     }
 }
 
+@media (max-width: 992px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .top-menu {
         grid-template-columns: repeat(2, 1fr);
@@ -324,7 +333,7 @@ footer {
     }
 
     .product-grid {
-        grid-template-columns: repeat(1fr);
+        grid-template-columns: 1fr;
     }
 
     .product-card {
@@ -348,25 +357,67 @@ footer {
 
 @media (max-width: 480px) {
     .top-menu {
-        grid-template-columns: 1fr;
-        font-size: 12px;
+        font-size: 8px;
+        margin-right: 10px;
     }
-
+    .nav_1{
+        font-size: 8px;
+    }
+    .icono-vet{
+        width: 15px;
+        height: 15px;
+    }
+    h1{
+        font-size: 15px;
+    }
+    aside h2{
+        font-size: 15px;
+        margin-left: 170px;
+    }
+    .search-filter{
+        width: 300px;
+        margin-left: 50px;
+    }
+    span{
+        font-size: 15px;
+    }
+    .order{
+        font-size: 10px;
+    }
+    .slide-box{
+        width: 400px;
+        height: 45px;
+    }
+    .filter-menu label{
+        font-size: 15px;
+    }
+    .filter-menu select{
+        font-size: 12px;
+        margin-left: 10px;
+    }
+    .filter-menu{
+        width: 400px;
+        height: 45px;
+    }
     .container {
         grid-template-columns: 1fr;
-        padding: 10px;
+        display: block;
     }
-
     .product-grid {
         grid-template-columns: 1fr;
+        gap: 1px;
+    }
+    .product-grid h2{
+        font-size: 15px;
+        margin-right: 8px;
     }
 
     .product-card {
-        width: 100%;
+        width: 70%;
         height: auto;
         margin: 10px 0;
+        margin-left: 60px;
     }
-
     .price {
         font-size: 1rem;
     }
@@ -377,5 +428,8 @@ footer {
 
     .search-filter input[type="text"] {
         font-size: 12px;
+    }
+    .redirectional-filters{
+        gap: 8px;
     }
 }
