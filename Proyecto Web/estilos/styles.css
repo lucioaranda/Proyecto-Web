@@ -15,7 +15,6 @@ body{
     color: #333;
     font-size: 16px;
     line-height: 1.5;
-    justify-content: space-between;
 }
 header{
     background-color: #091437;
@@ -29,7 +28,6 @@ header{
 .icono-vet{
     width: 30px;
     height: 30px;
-    vertical-align: auto;
     margin-right: 10px;
 }
 nav{
@@ -42,7 +40,6 @@ nav{
     font-size: 15px;
     list-style: none;
     display: flex;
-    justify-content: space-around;
     gap: 10px;
 }
 .top-menu a {
@@ -71,15 +68,12 @@ footer {
     height: 50px;
     background-color: #091437;
     color: #fff;
-    text-align: center;
     font-size: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 10px 0;
-    background-color: #091437;
     position: relative;
-    bottom: 0;
     width: 100%;
 }
 .product-grid{
