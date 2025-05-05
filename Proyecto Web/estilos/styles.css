@@ -82,7 +82,6 @@ footer {
     bottom: 0;
     width: 100%;
 }
-
 .product-grid{
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -177,21 +176,6 @@ footer {
 }
 .btn-buy:hover {
     background-color: #218838;
-}
-
-footer {
-    padding: 10px 0;
-    height: 50px;
-    background-color: #091437;
-    color: #fff;
-    text-align: center;
-    font-size: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    bottom: 0;
-    width: 100%;
 }
 .redirectional-filters{
     display: flex;
