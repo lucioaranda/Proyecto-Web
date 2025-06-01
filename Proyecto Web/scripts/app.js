@@ -25,6 +25,7 @@ const products = [{
 ];
 
 const grid = document.querySelector('.product-grid');
+const searchInput = document.querySelector('#input-search-products')
 
 function createProductCard(product){
     const card = document.createElement('article');
@@ -54,8 +55,21 @@ function createProductCard(product){
 
     return card
 }
-
+function renderProducts(list){
 products.forEach(product => {
     const card = createProductCard(product);
     grid.appendChild(card)
-})
+});
+}
+function filterProducts(text){
+    const filteredProducts = products.filter(product => {
+        return product.name.toLocaleLowerCase().includes(text.toLocaleLowerCase());
+    })
+    grid.innerHTML='';
+    renderProducts(filteredProducts);
+}
+searchInput.addEventListener('input', (e) =>{
+    filterProducts(e.target.value);
+});
+const button = document.querySelector('btn-add-products')
+button.addEventListener('click',addProduct) // Agrega cartas de productos dinaicamente//
