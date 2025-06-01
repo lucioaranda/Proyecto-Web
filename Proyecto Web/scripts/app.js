@@ -1,4 +1,4 @@
-const products = [{
+/*const products = [{
     name:"Camiseta",
     description: "Camiseta de algodon 100%",
     image: "#img",
@@ -22,7 +22,16 @@ const products = [{
     image: "#img",
     price: 15
 }
-];
+];*/
+/*const products = [];
+const getProducts = async () =>{
+    const responce = await fetch ('https://dummyjson.com/products');
+    const data = await  Response.json();
+    console.log('data',data);
+    renderProducts(data.products);
+}
+
+getProducts();
 
 const grid = document.querySelector('.product-grid');
 const searchInput = document.querySelector('#input-search-products')
@@ -36,7 +45,7 @@ function createProductCard(product){
     img.alt = product.name;
 
     const title = document.createElement('h3');
-    title.textContent = product.name;
+    title.textContent = product.title;
 
     const description = document.createElement('p');
     description.textContent = product.description;
@@ -73,3 +82,4 @@ searchInput.addEventListener('input', (e) =>{
 });
 const button = document.querySelector('btn-add-products')
 button.addEventListener('click',addProduct) // Agrega cartas de productos dinaicamente//
+/*
