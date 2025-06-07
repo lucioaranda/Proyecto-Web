@@ -28,15 +28,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     btnPlus.addEventListener('click', () => {
-      let currentValue = parseInt(quantity.textContent) || 0;
+      let currentValue = parseInt(quantity.textContent) || 1;
       quantity.textContent = currentValue + 1;
     });
 
     btnMinus.addEventListener('click', () => {
-      let currentValue = parseInt(quantity.textContent) || 0;
+      let currentValue = parseInt(quantity.textContent) || 1;
       if (currentValue > 1) {
         quantity.textContent = currentValue - 1;
       }
     });
   });
+
+  const sortSelect = document.getElementById('sort-select');
+  const productGrid = document.querySelector('.product-grid');
+
+  sortSelect.addEventListener('change', () => {
+  const option = sortSelect.value;
+  const cardsArray = Array.from(productGrid.querySelectorAll('.product-card'));
+
+  if (option === 'relevantes') {
+    cardsArray.sort((a, b) => {
+      const titleA = a.querySelector('.title-product')?.textContent?.toLowerCase() || '';
+      const titleB = b.querySelector('.title-product')?.textContent?.toLowerCase() || '';
+      return titleA.localeCompare(titleB);
+    });
+  } else if (option === 'precio-desc') {
+    cardsArray.sort((a, b) => {
+      const priceA = parseFloat(a.querySelector('.price')?.textContent.replace(/[^\d.]/g, '') || '0');
+      const priceB = parseFloat(b.querySelector('.price')?.textContent.replace(/[^\d.]/g, '') || '0');
+      return priceA - priceB;
+    });
+  } else if (option === 'precio-asc') {
+    cardsArray.sort((a, b) => {
+      const priceA = parseFloat(a.querySelector('.price')?.textContent.replace(/[^\d.]/g, '') || '0');
+      const priceB = parseFloat(b.querySelector('.price')?.textContent.replace(/[^\d.]/g, '') || '0');
+      return priceB - priceA;
+    });
+  }
+
+  productGrid.innerHTML = '';
+  cardsArray.forEach(card => productGrid.appendChild(card));
+});
 });
