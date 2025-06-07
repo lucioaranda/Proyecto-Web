@@ -262,6 +262,33 @@ footer {
     background-color: #fff;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
+
+  .counter .btn-minum{
+    background-color: #d82020;
+    color: #f0f0f0;
+    font-weight: 800;
+    font-size: 15px;
+  }
+
+  .btn-minum:hover{
+    background-color: #b11c1c;
+  }
+
+  .counter .btn-plus{
+    background-color: #28a745;
+    color: #f0f0f0;
+    font-weight: 800;
+    font-size: 15px;
+  }
+
+  .btn-plus:hover {
+    background-color:#218838;
+  }
+
+  .counter .quantity{
+    width: 15px;
+    text-align: center;
+  }
   
 
 @media (max-width: 1200px) {
