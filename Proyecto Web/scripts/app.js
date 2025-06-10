@@ -94,31 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const counters = document.querySelectorAll('.counter');
-
-  counters.forEach(counter => {
-    const btnMinus = counter.querySelector('.btn-minum'); 
-    const btnPlus = counter.querySelector('.btn-plus');
-    const quantity = counter.querySelector('.quantity');
-
-    if (!btnMinus || !btnPlus || !quantity) {
-      console.warn('Faltan elementos en counter:', counter);
-      return; 
-    }
-
-    btnPlus.addEventListener('click', () => {
-      let currentValue = parseInt(quantity.textContent) || 1;
-      quantity.textContent = currentValue + 1;
-    });
-
-    btnMinus.addEventListener('click', () => {
-      let currentValue = parseInt(quantity.textContent) || 1;
-      if (currentValue > 1) {
-        quantity.textContent = currentValue - 1;
-      }
-    });
-  });
-
   const sortSelect = document.getElementById('sort-select');
   const productGrid = document.querySelector('.product-grid');
 
@@ -151,4 +126,3 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 cargarProductosDesdeAirtable();
 });
-// Recordar subir las img´s a la nube para que se carguen desde ahi.
