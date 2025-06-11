@@ -23,7 +23,7 @@ async function cargarProductosDesdeAirtable() {
       const nombre = fields.Nombre || 'Sin nombre';
       const marca = fields.Marca || 'Sin marca';
       const precio = typeof fields.Precio === 'number' ? fields.Precio.toFixed(0) : 'N/A';
-      const imagenUrl = (fields.Imagen && fields.Imagen[0]?.url) || 'img\'s/no-image.png';
+      const imagenUrl = (fields.Imagen && fields.Imagen[0]?.url) || "img\s/no-image.png";
 
       const card = document.createElement('article');
       card.className = 'product-card';
