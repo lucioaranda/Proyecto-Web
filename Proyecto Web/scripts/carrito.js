@@ -15,19 +15,29 @@ function mostrarCarrito() {
   let total = 0;
 
   carrito.forEach((producto, index) => {
-    const item = document.createElement('div');
-    item.className = 'item-carrito';
-    item.innerHTML = `
-      <p><strong>${producto.nombre}</strong></p>
-      <p>Precio: $${producto.precio}</p>
-      <button onclick="eliminarProducto(${index})">Eliminar</button>
+    const card = document.createElement('div');
+    card.className = 'product-card';
+
+    card.innerHTML = `
+      <img src="${producto.imagenUrl}" alt="${producto.nombre}">
+      <h3>${producto.nombre}</h3>
+      <p>Precio unitario: $${producto.precio}</p>
+      <p>Cantidad: ${producto.cantidad}</p>
+      <button class="btn-eliminar" data-index="${index}">Eliminar</button>
     `;
 
-    listaCarrito.appendChild(item);
-    total += producto.precio;
+    listaCarrito.appendChild(card);
+    total += producto.precio * producto.cantidad;
   });
 
   totalElement.textContent = total.toFixed(2);
+
+  document.querySelectorAll('.btn-eliminar').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const index = e.target.dataset.index;
+      eliminarProducto(index);
+    });
+  });
 }
 
 function eliminarProducto(index) {
