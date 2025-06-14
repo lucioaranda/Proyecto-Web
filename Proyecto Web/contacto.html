@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="estilos/style_contact.css">
-        <link rel="icon" href="img's/icono-vet-2.png" type="image/png">
-        <title>Contacto</title>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="estilos/style_contact.css" />
+    <link rel="icon" href="img's/icono-vet-2.png" type="image/png" />
+    <title>Contacto</title>
+</head>
+<body>
     <div class="container">
-        <h2 >Contactanos:</h2>
-        <form class="form" action="" method="post">
+        <h2>Contactanos:</h2>
+        <form 
+          class="form" 
+          action="https://formspree.io/f/myzjjgbp" 
+          method="POST"
+        >
             <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" id="nombre" placeholder="Escribi tu nombre" required>
-            <label  for="email">Email:</label>
-            <input type="email" name="email" id="email" required>
+            <input type="text" name="nombre" id="nombre" placeholder="Escribi tu nombre" required />
+            
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required />
+            
             <label for="mensaje">Mensaje:</label>
-            <textarea name=""id="mensaje" cols="30" rows="3" required></textarea>
-            <input class="button" type="submit" value="Enviar">
+            <textarea name="mensaje" id="mensaje" cols="30" rows="3" required></textarea>
+            
+            <input class="button" type="submit" value="Enviar" />
         </form>
     </div>
-    </body>
+</body>
 </html>
