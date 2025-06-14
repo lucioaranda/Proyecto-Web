@@ -363,6 +363,15 @@ footer {
     position: relative;
 }
 
+.icon-c {
+  font-size: 1.5rem; 
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #333; 
+  text-decoration: none;
+}
+
 .carrito-cantidad{
     position: absolute;
     top: -8px;
@@ -373,6 +382,8 @@ footer {
     padding: 2px 6px;
     font-size: 12px;
 }
+
+
 
 @media (max-width: 1200px) {
     .top-menu {

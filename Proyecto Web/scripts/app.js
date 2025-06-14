@@ -253,18 +253,6 @@ function agregarAlCarrito(productoNuevo) {
   alert(`Se agregaron ${productoNuevo.cantidad} unidad(es) de ${productoNuevo.nombre} al carrito.`);
 }
 
-function mostrarCarrito() {
-  if (carrito.length === 0) {
-    alert("El carrito está vacío.");
-    return;
-  }
-  let mensaje = 'Productos en el carrito:\n\n';
-  carrito.forEach(p => {
-    mensaje += `${p.nombre} - Cantidad: ${p.cantidad}\n`;
-  });
-  alert(mensaje);
-}
-
 
 document.addEventListener('DOMContentLoaded', () => {
   cargarProductosDesdeAirtable();

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mi Carrito</title>
+  <link rel="stylesheet" href="estilos/styles.css" />
   <link rel="stylesheet" href="estilos/style_carrito.css" />
 </head>
 <body>
@@ -13,9 +14,9 @@
   </header>
 
   <main class="carrito-container">
-    <div id="lista-carrito"></div>
+    <div class="product-grid" id="lista-carrito"></div>
     <div id="resumen-compra">
-      <p><strong>Total:</strong> $<span id="total"></span></p>
+      <p><strong>Total:</strong> $<span id="total">0</span></p>
       <button id="finalizar-compra">Finalizar compra</button>
     </div>
   </main>
