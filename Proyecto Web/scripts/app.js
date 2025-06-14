@@ -1,7 +1,7 @@
 let productos = []; 
 let productosFiltrados = []; 
 let paginaActual = 1;
-const productosPorPagina = 16;
+const productosPorPagina = 12;
 
 async function cargarProductosDesdeAirtable() {
   const apiUrl = 'https://api.airtable.com/v0/appPMktlLjM6I2FCD/tblrC3aTm2KIN2E9s';
@@ -113,22 +113,17 @@ function crearControlesPaginacion() {
   if (!contenedor) {
     contenedor = document.createElement('div');
     contenedor.className = 'pagination-controls';
-    contenedor.style.display = 'flex';
-    contenedor.style.justifyContent = 'center';
-    contenedor.style.alignItems = 'center';
-    contenedor.style.gap = '10px';
-    contenedor.style.marginTop = '20px';
 
     const container = document.querySelector('.product-grid').parentElement;
     container.appendChild(contenedor);
 
     const btnPrev = document.createElement('button');
-    btnPrev.textContent = '⬅ Anterior';
+    btnPrev.textContent = '⬅';
     btnPrev.id = 'btn-prev';
     btnPrev.style.cursor = 'pointer';
 
     const btnNext = document.createElement('button');
-    btnNext.textContent = 'Siguiente ➡';
+    btnNext.textContent = '➡';
     btnNext.id = 'btn-next';
     btnNext.style.cursor = 'pointer';
 
