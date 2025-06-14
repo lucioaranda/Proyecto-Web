@@ -3,6 +3,9 @@ let productosFiltrados = [];
 let paginaActual = 1;
 const productosPorPagina = 12;
 
+
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
 async function cargarProductosDesdeAirtable() {
   const apiUrl = 'https://api.airtable.com/v0/appPMktlLjM6I2FCD/tblrC3aTm2KIN2E9s';
   const apiKey = 'patU5qeiI8CO9vDSJ.257a51187209cb32dc01fdcf2e9960e72b8a7a472d49511bff61b5b736c77862';
@@ -31,7 +34,6 @@ async function cargarProductosDesdeAirtable() {
       };
     });
 
-    
     productosFiltrados = [...productos];
 
     crearControlesPaginacion();
@@ -74,7 +76,21 @@ function mostrarPagina(numeroPagina) {
         <button class="btn-buy">Comprar</button>
       </div>
     `;
+
     productGrid.appendChild(card);
+
+    
+    const btnComprar = card.querySelector('.btn-buy');
+    btnComprar.addEventListener('click', () => {
+      const cantidad = parseInt(card.querySelector('.quantity').textContent) || 1;
+      agregarAlCarrito({
+        nombre: producto.nombre,
+        marca: producto.marca,
+        precio: producto.precio,
+        cantidad: cantidad,
+        imagenUrl: producto.imagenUrl
+      });
+    });
   });
 
   aplicarEventosContadores();
@@ -170,6 +186,7 @@ function aplicarEventosContadores() {
 }
 
 
+
 function aplicarFiltrosYOrden() {
   const searchInput = document.querySelector('.search-filter input[type="text"]');
   const filter = searchInput ? searchInput.value.toLowerCase() : '';
@@ -182,10 +199,49 @@ function aplicarFiltrosYOrden() {
   mostrarPagina(paginaActual);
 }
 
+
+function guardarCarrito() {
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+  actualizarContadorCarrito();
+}
+
+function actualizarContadorCarrito() {
+  const contador = document.getElementById('carrito-cantidad');
+  const totalCantidad = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+  if (contador) {
+    contador.textContent = totalCantidad;
+  }
+}
+
+function agregarAlCarrito(productoNuevo) {
+  
+  const index = carrito.findIndex(p => p.nombre === productoNuevo.nombre);
+  if (index !== -1) {
+    
+    carrito[index].cantidad += productoNuevo.cantidad;
+  } else {
+    carrito.push(productoNuevo);
+  }
+  guardarCarrito();
+  alert(`Se agregaron ${productoNuevo.cantidad} unidad(es) de ${productoNuevo.nombre} al carrito.`);
+}
+
+function mostrarCarrito() {
+  if (carrito.length === 0) {
+    alert("El carrito está vacío.");
+    return;
+  }
+  let mensaje = 'Productos en el carrito:\n\n';
+  carrito.forEach(p => {
+    mensaje += `${p.nombre} - Cantidad: ${p.cantidad}\n`;
+  });
+  alert(mensaje);
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   cargarProductosDesdeAirtable();
 
-  
   const searchInput = document.querySelector('.search-filter input[type="text"]');
   if (searchInput) {
     searchInput.addEventListener('input', () => {
@@ -193,7 +249,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
- 
   const sortSelect = document.getElementById('sort-select');
   const productGrid = document.querySelector('.product-grid');
 
@@ -214,5 +269,12 @@ document.addEventListener('DOMContentLoaded', () => {
       paginaActual = 1;
       mostrarPagina(paginaActual);
     });
+  }
+
+  actualizarContadorCarrito();
+
+  const carritoIcono = document.getElementById('carrito-icono');
+  if (carritoIcono) {
+    carritoIcono.addEventListener('click', mostrarCarrito);
   }
 });
