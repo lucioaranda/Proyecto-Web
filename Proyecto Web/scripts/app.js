@@ -1,3 +1,8 @@
+let productos = []; 
+let productosFiltrados = []; 
+let paginaActual = 1;
+const productosPorPagina = 16;
+
 async function cargarProductosDesdeAirtable() {
   const apiUrl = 'https://api.airtable.com/v0/appPMktlLjM6I2FCD/tblrC3aTm2KIN2E9s';
   const apiKey = 'patU5qeiI8CO9vDSJ.257a51187209cb32dc01fdcf2e9960e72b8a7a472d49511bff61b5b736c77862';
@@ -16,10 +21,9 @@ async function cargarProductosDesdeAirtable() {
       return;
     }
 
-    const productGrid = document.querySelector('.product-grid');
-
-    data.records.forEach(record => {
+    productos = data.records.map(record => {
       const fields = record.fields;
+<<<<<<< HEAD
       const nombre = fields.Nombre || 'Sin nombre';
       const marca = fields.Marca || 'Sin marca';
       const precio = typeof fields.Precio === 'number' ? fields.Precio.toFixed(0) : 'N/A';
@@ -44,12 +48,132 @@ async function cargarProductosDesdeAirtable() {
       `;
 
       productGrid.appendChild(card);
+=======
+      return {
+        nombre: fields.Nombre || 'Sin nombre',
+        marca: fields.Marca || 'Sin marca',
+        precio: typeof fields.Precio === 'number' ? fields.Precio.toFixed(0) : 'N/A',
+        imagenUrl: (fields.Imagen && fields.Imagen[0]?.url) || "img/s/no-image.png"
+      };
+>>>>>>> 6b81187 (update_pagination)
     });
 
-    aplicarEventosContadores();
+    
+    productosFiltrados = [...productos];
 
+    crearControlesPaginacion();
+    mostrarPagina(paginaActual);
   } catch (error) {
     console.error('Error al cargar productos desde Airtable:', error);
+  }
+}
+
+function mostrarPagina(numeroPagina) {
+  const productGrid = document.querySelector('.product-grid');
+  productGrid.innerHTML = '';
+
+  const totalPaginas = Math.ceil(productosFiltrados.length / productosPorPagina) || 1;
+
+  if (numeroPagina > totalPaginas) {
+    paginaActual = totalPaginas;
+    numeroPagina = totalPaginas;
+  }
+
+  const inicio = (numeroPagina - 1) * productosPorPagina;
+  const fin = inicio + productosPorPagina;
+  const productosPagina = productosFiltrados.slice(inicio, fin);
+
+  productosPagina.forEach(producto => {
+    const card = document.createElement('article');
+    card.className = 'product-card';
+
+    card.innerHTML = `
+      <img src="${producto.imagenUrl}" alt="${producto.nombre}">
+      <h4 class="brand">${producto.marca}</h4>
+      <h3 class="title-product">${producto.nombre}</h3>
+      <p class="price">Precio: $${producto.precio}</p>
+      <div class="actions">
+        <div class="counter">
+          <button class="btn-minum">-</button>
+          <span class="quantity">1</span>
+          <button class="btn-plus">+</button>
+        </div>
+        <button class="btn-buy">Comprar</button>
+      </div>
+    `;
+    productGrid.appendChild(card);
+  });
+
+  aplicarEventosContadores();
+  actualizarControlesPaginacion();
+}
+
+function crearControlesPaginacion() {
+  let contenedor = document.querySelector('.pagination-controls');
+  if (!contenedor) {
+    contenedor = document.createElement('div');
+    contenedor.className = 'pagination-controls';
+    contenedor.style.display = 'flex';
+    contenedor.style.justifyContent = 'center';
+    contenedor.style.alignItems = 'center';
+    contenedor.style.gap = '10px';
+    contenedor.style.marginTop = '20px';
+
+    const container = document.querySelector('.product-grid').parentElement;
+    container.appendChild(contenedor);
+
+    const btnPrev = document.createElement('button');
+    btnPrev.textContent = '⬅ Anterior';
+    btnPrev.id = 'btn-prev';
+    btnPrev.style.cursor = 'pointer';
+
+    const btnNext = document.createElement('button');
+    btnNext.textContent = 'Siguiente ➡';
+    btnNext.id = 'btn-next';
+    btnNext.style.cursor = 'pointer';
+
+    const spanPagina = document.createElement('span');
+    spanPagina.id = 'pagina-actual';
+
+    contenedor.appendChild(btnPrev);
+    contenedor.appendChild(spanPagina);
+    contenedor.appendChild(btnNext);
+
+    btnPrev.addEventListener('click', () => {
+      if (paginaActual > 1) {
+        paginaActual--;
+        mostrarPagina(paginaActual);
+      }
+    });
+
+    btnNext.addEventListener('click', () => {
+      const totalPaginas = Math.ceil(productosFiltrados.length / productosPorPagina) || 1;
+      if (paginaActual < totalPaginas) {
+        paginaActual++;
+        mostrarPagina(paginaActual);
+      }
+    });
+  }
+  actualizarControlesPaginacion();
+}
+
+function actualizarControlesPaginacion() {
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  const spanPagina = document.getElementById('pagina-actual');
+
+  const totalPaginas = Math.ceil(productosFiltrados.length / productosPorPagina) || 1;
+
+  if (paginaActual > totalPaginas) paginaActual = totalPaginas;
+
+  if (spanPagina) {
+    spanPagina.textContent = `Página ${paginaActual} de ${totalPaginas}`;
+  }
+  if (btnPrev) {
+    btnPrev.disabled = paginaActual === 1;
+  }
+  if (btnNext) {
+    btnNext.disabled = paginaActual === totalPaginas;
   }
 }
 
@@ -57,7 +181,7 @@ function aplicarEventosContadores() {
   const counters = document.querySelectorAll('.counter');
 
   counters.forEach(counter => {
-    const btnMinus = counter.querySelector('.btn-minum'); 
+    const btnMinus = counter.querySelector('.btn-minum');
     const btnPlus = counter.querySelector('.btn-plus');
     const quantity = counter.querySelector('.quantity');
 
@@ -77,52 +201,50 @@ function aplicarEventosContadores() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+
+function aplicarFiltrosYOrden() {
   const searchInput = document.querySelector('.search-filter input[type="text"]');
-  const productCards = document.querySelectorAll('.product-card');
+  const filter = searchInput ? searchInput.value.toLowerCase() : '';
 
-  searchInput.addEventListener('input', () => {
-    const filter = searchInput.value.toLowerCase();
+  productosFiltrados = productos.filter(producto =>
+    producto.nombre.toLowerCase().includes(filter)
+  );
 
-    productCards.forEach(card => {
-      const title = card.querySelector('.title-product').textContent.toLowerCase();
-      if (title.includes(filter)) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  });
+  paginaActual = 1;
+  mostrarPagina(paginaActual);
+}
 
-  const sortSelect = document.getElementById('sort-select');
-  const productGrid = document.querySelector('.product-grid');
+document.addEventListener('DOMContentLoaded', () => {
+  cargarProductosDesdeAirtable();
 
-  sortSelect.addEventListener('change', () => {
-  const option = sortSelect.value;
-  const cardsArray = Array.from(productGrid.querySelectorAll('.product-card'));
-
-  if (option === 'relevantes') {
-    cardsArray.sort((a, b) => {
-      const titleA = a.querySelector('.title-product')?.textContent?.toLowerCase() || '';
-      const titleB = b.querySelector('.title-product')?.textContent?.toLowerCase() || '';
-      return titleA.localeCompare(titleB);
-    });
-  } else if (option === 'precio-desc') {
-    cardsArray.sort((a, b) => {
-      const priceA = parseFloat(a.querySelector('.price')?.textContent.replace(/[^\d.]/g, '') || '0');
-      const priceB = parseFloat(b.querySelector('.price')?.textContent.replace(/[^\d.]/g, '') || '0');
-      return priceA - priceB;
-    });
-  } else if (option === 'precio-asc') {
-    cardsArray.sort((a, b) => {
-      const priceA = parseFloat(a.querySelector('.price')?.textContent.replace(/[^\d.]/g, '') || '0');
-      const priceB = parseFloat(b.querySelector('.price')?.textContent.replace(/[^\d.]/g, '') || '0');
-      return priceB - priceA;
+  
+  const searchInput = document.querySelector('.search-filter input[type="text"]');
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      aplicarFiltrosYOrden();
     });
   }
 
-  productGrid.innerHTML = '';
-  cardsArray.forEach(card => productGrid.appendChild(card));
-});
-cargarProductosDesdeAirtable();
+ 
+  const sortSelect = document.getElementById('sort-select');
+  const productGrid = document.querySelector('.product-grid');
+
+  if (sortSelect && productGrid) {
+    sortSelect.addEventListener('change', () => {
+      const option = sortSelect.value;
+
+      if (option === 'relevantes') {
+        productosFiltrados.sort((a, b) =>
+          a.nombre.toLowerCase().localeCompare(b.nombre.toLowerCase())
+        );
+      } else if (option === 'precio-desc') {
+        productosFiltrados.sort((a, b) => parseFloat(a.precio) - parseFloat(b.precio));
+      } else if (option === 'precio-asc') {
+        productosFiltrados.sort((a, b) => parseFloat(b.precio) - parseFloat(a.precio));
+      }
+
+      paginaActual = 1;
+      mostrarPagina(paginaActual);
+    });
+  }
 });
