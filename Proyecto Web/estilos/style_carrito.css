@@ -1,6 +1,10 @@
 html,body{
     background-color: #f0f0f0;
 }
+
+header{
+  height: 60px;
+}
 .carrito-container {
   max-width: 1500px;
   margin: 0 auto;
@@ -28,13 +32,16 @@ html,body{
 }
 
 #resumen-compra {
-  text-align: left;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
   background-color: #f8f8f8;
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   margin-top: 10px;
 }
+
 
 #resumen-compra p {
   font-size: 1.2rem;
@@ -65,7 +72,6 @@ header h1 {
 header a {
   display: block;
   text-align: center;
-  color: #3498db;
   text-decoration: none;
   margin-bottom: 2rem;
 }
@@ -76,7 +82,7 @@ header a:hover {
 
 .btn-eliminar {
   background-color: #e74c3c; 
-  color: white;
+  color: #fff;
   border: none;
   padding: 8px 16px;
   border-radius: 12px; 
@@ -87,4 +93,24 @@ header a:hover {
 
 .btn-eliminar:hover {
   background-color: #c0392b; 
+}
+
+.btn-seguir-comprando {
+  display: inline-block;
+  background-color: #091437;
+  color: #fff;
+  padding: 0.3rem 1.2rem;
+  margin-top: 30px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-seguir-comprando:hover {
+  background-color: #0d344e;
+  transform: scale(1.03);
 }
