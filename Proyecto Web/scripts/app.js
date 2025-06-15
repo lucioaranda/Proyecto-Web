@@ -56,7 +56,8 @@ async function cargarProductosDesdeAirtable() {
         nombre: fields.Nombre || 'Sin nombre',
         marca: fields.Marca || 'Sin marca',
         precio: typeof fields.Precio === 'number' ? fields.Precio.toFixed(0) : 'N/A',
-        imagenUrl: (fields.Imagen && fields.Imagen[0]?.url) || "img/s/no-image.png"
+        imagenUrl: (fields.Imagen && fields.Imagen[0]?.url) || "img/s/no-image.png",
+        envioGratis: fields.DeliveryFree === true
       };
 >>>>>>> 6b81187 (update_pagination)
     });
@@ -90,6 +91,7 @@ function mostrarPagina(numeroPagina) {
     card.className = 'product-card';
 
     card.innerHTML = `
+      ${producto.envioGratis ? '<div class="envio-gratis-label">Delivery Free</div>' : ''}
       <img src="${producto.imagenUrl}" alt="${producto.nombre}">
       <h4 class="brand">${producto.marca}</h4>
       <h3 class="title-product">${producto.nombre}</h3>
@@ -100,7 +102,7 @@ function mostrarPagina(numeroPagina) {
           <span class="quantity">1</span>
           <button class="btn-plus">+</button>
         </div>
-        <button class="btn-buy">Comprar</button>
+      <button class="btn-buy">Comprar</button>
       </div>
     `;
 
@@ -218,9 +220,14 @@ function aplicarFiltrosYOrden() {
   const searchInput = document.querySelector('.search-filter input[type="text"]');
   const filter = searchInput ? searchInput.value.toLowerCase() : '';
 
-  productosFiltrados = productos.filter(producto =>
-    producto.nombre.toLowerCase().includes(filter)
-  );
+  const checkboxEnvioGratis = document.getElementById('filtro-envio-gratis');
+  const soloEnvioGratis = checkboxEnvioGratis && checkboxEnvioGratis.checked;
+
+  productosFiltrados = productos.filter(producto => {
+    const coincideTexto = producto.nombre.toLowerCase().includes(filter);
+    const coincideEnvio = !soloEnvioGratis || producto.envioGratis;
+    return coincideTexto && coincideEnvio;
+  });
 
   paginaActual = 1;
   mostrarPagina(paginaActual);
@@ -255,6 +262,14 @@ function agregarAlCarrito(productoNuevo) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  const checkboxEnvioGratis = document.getElementById('filtro-envio-gratis');
+  if (checkboxEnvioGratis) {
+  checkboxEnvioGratis.addEventListener('change', () => {
+    aplicarFiltrosYOrden();
+    });
+  }
+
   cargarProductosDesdeAirtable();
 
   const searchInput = document.querySelector('.search-filter input[type="text"]');

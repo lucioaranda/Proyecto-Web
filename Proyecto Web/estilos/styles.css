@@ -89,6 +89,7 @@ footer {
 }
 
 .product-card{
+    position: relative;
     background-color: #fff;
     width: 330px;
     height: 500px;
@@ -381,6 +382,19 @@ footer {
     border-radius: 50%;
     padding: 2px 6px;
     font-size: 12px;
+}
+
+.envio-gratis-label {
+  position: absolute;
+  top: 60px;
+  right: 4px;
+  background-color: #0c0d5a;
+  color: #fff;
+  font-size: 0.6rem;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  z-index: 1;
 }
 
 
