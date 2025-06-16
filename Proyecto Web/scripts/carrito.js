@@ -15,19 +15,21 @@ function mostrarCarrito() {
   let total = 0;
 
   carrito.forEach((producto, index) => {
+    const precioUnitario = producto.oferta || producto.precio;
+
     const card = document.createElement('div');
     card.className = 'product-card';
 
     card.innerHTML = `
       <img src="${producto.imagenUrl}" alt="${producto.nombre}">
       <h3>${producto.nombre}</h3>
-      <p>Precio unitario: $${producto.precio}</p>
+      <p>Precio unitario: $${precioUnitario}</p>
       <p>Cantidad: ${producto.cantidad}</p>
       <button class="btn-eliminar" data-index="${index}">Eliminar</button>
     `;
 
     listaCarrito.appendChild(card);
-    total += producto.precio * producto.cantidad;
+    total += precioUnitario * producto.cantidad;
   });
 
   totalElement.textContent = total.toFixed(2);

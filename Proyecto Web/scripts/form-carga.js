@@ -1,5 +1,5 @@
 async function subirImagenAImgBB(file) {
-  const imgbbApiKey = '560472bdaaf1bd190ee960f3a9858b82'; // Reemplazá con tu API Key de ImgBB
+  const imgbbApiKey = '560472bdaaf1bd190ee960f3a9858b82'; 
   const formData = new FormData();
   formData.append('image', await convertirA_Base64(file));
 
@@ -24,11 +24,11 @@ async function subirImagenAImgBB(file) {
   }
 }
 
-// Convierte archivo a base64
+
 async function convertirA_Base64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result.split(',')[1]); // solo base64 sin encabezado
+    reader.onloadend = () => resolve(reader.result.split(',')[1]); 
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
@@ -82,16 +82,16 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Subir imagen a ImgBB
+   
     const urlImagen = await subirImagenAImgBB(file);
     if (!urlImagen) return;
 
-    // Obtener datos del formulario
+ 
     const nombre = document.getElementById('nombre').value.trim();
     const productName = document.getElementById('product-name').value.trim();
     const precio = parseFloat(document.getElementById('precio').value);
 
-    // Crear objeto para Airtable
+  
     const producto = {
       Nombre: productName,
       Marca: nombre,
@@ -99,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
       Imagen: [{ url: urlImagen }]
     };
 
-    // Guardar producto en Airtable
     const exito = await guardarProductoEnAirtable(producto);
     if (exito) {
       alert('Producto cargado con éxito');

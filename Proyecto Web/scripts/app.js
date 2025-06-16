@@ -97,6 +97,7 @@ function mostrarPagina(numeroPagina) {
         nombre: producto.nombre,
         marca: producto.marca,
         precio: producto.precio,
+        oferta: producto.oferta ? parseFloat(producto.oferta) : null,
         cantidad: cantidad,
         imagenUrl: producto.imagenUrl
       });
