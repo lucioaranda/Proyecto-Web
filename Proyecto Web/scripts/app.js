@@ -3,12 +3,13 @@ let productosFiltrados = [];
 let paginaActual = 1;
 const productosPorPagina = 12;
 
-
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 async function cargarProductosDesdeAirtable() {
   const apiUrl = 'https://api.airtable.com/v0/appPMktlLjM6I2FCD/tblrC3aTm2KIN2E9s';
   const apiKey = 'patU5qeiI8CO9vDSJ.257a51187209cb32dc01fdcf2e9960e72b8a7a472d49511bff61b5b736c77862';
+
+  const productGrid = document.querySelector('.product-grid'); 
 
   try {
     const response = await fetch(apiUrl, {
@@ -26,41 +27,14 @@ async function cargarProductosDesdeAirtable() {
 
     productos = data.records.map(record => {
       const fields = record.fields;
-<<<<<<< HEAD
-      const nombre = fields.Nombre || 'Sin nombre';
-      const marca = fields.Marca || 'Sin marca';
-      const precio = typeof fields.Precio === 'number' ? fields.Precio.toFixed(0) : 'N/A';
-      const imagenUrl = (fields.Imagen && fields.Imagen[0]?.url) || 'img\'s/no-image.png';
-
-      const card = document.createElement('article');
-      card.className = 'product-card';
-
-      card.innerHTML = `
-        <img src="${imagenUrl}" alt="${nombre}">
-        <h4 class="brand">${marca}</h4>
-        <h3 class="title-product">${nombre}</h3>
-        <p class="price">Precio: $${precio}</p>
-        <div class="actions">
-          <div class="counter">
-            <button class="btn-minum">-</button>
-            <span class="quantity">1</span>
-            <button class="btn-plus">+</button>
-          </div>
-          <button class="btn-buy">Comprar</button>
-        </div>
-      `;
-
-      productGrid.appendChild(card);
-=======
       return {
         nombre: fields.Nombre || 'Sin nombre',
         marca: fields.Marca || 'Sin marca',
         precio: typeof fields.Precio === 'number' ? fields.Precio.toFixed(0) : 'N/A',
-        imagenUrl: (fields.Imagen && fields.Imagen[0]?.url) || "img/s/no-image.png",
-        envioGratis: fields.DeliveryFree === true,
-        oferta: typeof fields.Oferta === 'number' ? fields.Oferta.toFixed(0) : null
+        imagenUrl: (fields.Imagen && fields.Imagen[0]?.url) || 'img\'s/no-image.png',
+        envioGratis: fields.EnvioGratis === true,
+        oferta: fields.Oferta || null
       };
->>>>>>> 6b81187 (update_pagination)
     });
 
     productosFiltrados = [...productos];
@@ -91,39 +65,38 @@ function mostrarPagina(numeroPagina) {
     const card = document.createElement('article');
     card.className = 'product-card';
 
-    card.innerHTML = `
-      ${producto.envioGratis ? '<div class="envio-gratis-label">Delivery Free</div>' : ''}
-      <img src="${producto.imagenUrl}" alt="${producto.nombre}">
-      <h4 class="brand">${producto.marca}</h4>
-      <h3 class="title-product">${producto.nombre}</h3>
-      <p class="price">
-        ${
-          producto.oferta
-          ? `<span class="antes">Antes: <span class="tachado">$${producto.precio}</span></span>
-          <span class="ahora">Ahora: $${producto.oferta}</span>`
-          : `Precio: $${producto.precio}`
-        }
-      </p>
-      <div class="actions">
-        <div class="counter">
-          <button class="btn-minum">-</button>
-          <span class="quantity">1</span>
-          <button class="btn-plus">+</button>
-        </div>
-      <button class="btn-buy">Comprar</button>
+   card.innerHTML = `
+    ${producto.envioGratis ? '<div class="envio-gratis-label">Delivery Free</div>' : ''}
+    <img src="${producto.imagenUrl}" alt="${producto.nombre}">
+    <h4 class="brand">${producto.marca}</h4>
+    <h3 class="title-product">${producto.nombre}</h3>
+    <p class="price">
+      ${
+        producto.oferta
+        ? `<span class="antes">Antes: <span class="tachado">$${producto.precio}</span></span>
+           <span class="ahora">Ahora: $${producto.oferta}</span>`
+        : `Precio: $${producto.precio}`
+      }
+    </p>
+    <div class="actions">
+      <div class="counter">
+        <button class="btn-minum">-</button>
+        <span class="quantity">1</span>
+        <button class="btn-plus">+</button>
       </div>
-    `;
+      <button class="btn-buy">Comprar</button>
+    </div>
+  `;
 
     productGrid.appendChild(card);
 
-    
     const btnComprar = card.querySelector('.btn-buy');
     btnComprar.addEventListener('click', () => {
       const cantidad = parseInt(card.querySelector('.quantity').textContent) || 1;
       agregarAlCarrito({
         nombre: producto.nombre,
         marca: producto.marca,
-        precio: producto.precio,
+        precio: producto.oferta || producto.precio,
         cantidad: cantidad,
         imagenUrl: producto.imagenUrl
       });
@@ -222,8 +195,6 @@ function aplicarEventosContadores() {
   });
 }
 
-
-
 function aplicarFiltrosYOrden() {
   const searchInput = document.querySelector('.search-filter input[type="text"]');
   const filtroTexto = searchInput ? searchInput.value.toLowerCase() : '';
@@ -236,8 +207,8 @@ function aplicarFiltrosYOrden() {
 
   productosFiltrados = productos.filter(producto => {
     const coincideTexto =
-    producto.nombre.toLowerCase().includes(filtroTexto) ||
-    producto.marca.toLowerCase().includes(filtroTexto);
+      producto.nombre.toLowerCase().includes(filtroTexto) ||
+      producto.marca.toLowerCase().includes(filtroTexto);
     const coincideEnvio = !soloEnvioGratis || producto.envioGratis;
     const coincideOferta = !soloOfertas || producto.oferta;
 
@@ -247,7 +218,6 @@ function aplicarFiltrosYOrden() {
   paginaActual = 1;
   mostrarPagina(paginaActual);
 }
-
 
 function guardarCarrito() {
   localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -263,10 +233,8 @@ function actualizarContadorCarrito() {
 }
 
 function agregarAlCarrito(productoNuevo) {
-  
   const index = carrito.findIndex(p => p.nombre === productoNuevo.nombre);
   if (index !== -1) {
-    
     carrito[index].cantidad += productoNuevo.cantidad;
   } else {
     carrito.push(productoNuevo);
@@ -275,29 +243,22 @@ function agregarAlCarrito(productoNuevo) {
   alert(`Se agregaron ${productoNuevo.cantidad} unidad(es) de ${productoNuevo.nombre} al carrito.`);
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
-
   const filtroOfertaCheckbox = document.getElementById('filtro-oferta');
   if (filtroOfertaCheckbox) {
-  filtroOfertaCheckbox.addEventListener('change', aplicarFiltrosYOrden);
+    filtroOfertaCheckbox.addEventListener('change', aplicarFiltrosYOrden);
   }
-
 
   const checkboxEnvioGratis = document.getElementById('filtro-envio-gratis');
   if (checkboxEnvioGratis) {
-  checkboxEnvioGratis.addEventListener('change', () => {
-    aplicarFiltrosYOrden();
-    });
+    checkboxEnvioGratis.addEventListener('change', aplicarFiltrosYOrden);
   }
 
   cargarProductosDesdeAirtable();
 
   const searchInput = document.querySelector('.search-filter input[type="text"]');
   if (searchInput) {
-    searchInput.addEventListener('input', () => {
-      aplicarFiltrosYOrden();
-    });
+    searchInput.addEventListener('input', aplicarFiltrosYOrden);
   }
 
   const sortSelect = document.getElementById('sort-select');
@@ -323,5 +284,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   actualizarContadorCarrito();
-
 });

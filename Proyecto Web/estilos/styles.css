@@ -388,15 +388,16 @@ footer {
 
 .envio-gratis-label {
   position: absolute;
-  top: 60px;
-  right: 4px;
-  background-color: #0c0d5a;
-  color: #fff;
-  font-size: 0.6rem;
-  padding: 4px 6px;
+  top: 8px;
+  left: 8px;
+  background-color: #27ae60; 
+  color: white;
+  font-size: 0.75rem;
+  padding: 4px 8px;
   border-radius: 4px;
-  font-weight: bold;
-  z-index: 1;
+  font-weight: 600;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .tachado {
