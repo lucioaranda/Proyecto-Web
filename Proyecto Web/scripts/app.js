@@ -57,7 +57,8 @@ async function cargarProductosDesdeAirtable() {
         marca: fields.Marca || 'Sin marca',
         precio: typeof fields.Precio === 'number' ? fields.Precio.toFixed(0) : 'N/A',
         imagenUrl: (fields.Imagen && fields.Imagen[0]?.url) || "img/s/no-image.png",
-        envioGratis: fields.DeliveryFree === true
+        envioGratis: fields.DeliveryFree === true,
+        oferta: typeof fields.Oferta === 'number' ? fields.Oferta.toFixed(0) : null
       };
 >>>>>>> 6b81187 (update_pagination)
     });
@@ -95,7 +96,14 @@ function mostrarPagina(numeroPagina) {
       <img src="${producto.imagenUrl}" alt="${producto.nombre}">
       <h4 class="brand">${producto.marca}</h4>
       <h3 class="title-product">${producto.nombre}</h3>
-      <p class="price">Precio: $${producto.precio}</p>
+      <p class="price">
+        ${
+          producto.oferta
+          ? `<span class="antes">Antes: <span class="tachado">$${producto.precio}</span></span>
+          <span class="ahora">Ahora: $${producto.oferta}</span>`
+          : `Precio: $${producto.precio}`
+        }
+      </p>
       <div class="actions">
         <div class="counter">
           <button class="btn-minum">-</button>
@@ -218,15 +226,22 @@ function aplicarEventosContadores() {
 
 function aplicarFiltrosYOrden() {
   const searchInput = document.querySelector('.search-filter input[type="text"]');
-  const filter = searchInput ? searchInput.value.toLowerCase() : '';
+  const filtroTexto = searchInput ? searchInput.value.toLowerCase() : '';
 
-  const checkboxEnvioGratis = document.getElementById('filtro-envio-gratis');
-  const soloEnvioGratis = checkboxEnvioGratis && checkboxEnvioGratis.checked;
+  const envioGratisCheckbox = document.querySelector('input[type="checkbox"]#filtro-envio-gratis');
+  const soloEnvioGratis = envioGratisCheckbox?.checked;
+
+  const ofertaCheckbox = document.querySelector('input[type="checkbox"]#filtro-oferta');
+  const soloOfertas = ofertaCheckbox?.checked;
 
   productosFiltrados = productos.filter(producto => {
-    const coincideTexto = producto.nombre.toLowerCase().includes(filter);
+    const coincideTexto =
+    producto.nombre.toLowerCase().includes(filtroTexto) ||
+    producto.marca.toLowerCase().includes(filtroTexto);
     const coincideEnvio = !soloEnvioGratis || producto.envioGratis;
-    return coincideTexto && coincideEnvio;
+    const coincideOferta = !soloOfertas || producto.oferta;
+
+    return coincideTexto && coincideEnvio && coincideOferta;
   });
 
   paginaActual = 1;
@@ -262,6 +277,12 @@ function agregarAlCarrito(productoNuevo) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  const filtroOfertaCheckbox = document.getElementById('filtro-oferta');
+  if (filtroOfertaCheckbox) {
+  filtroOfertaCheckbox.addEventListener('change', aplicarFiltrosYOrden);
+  }
+
 
   const checkboxEnvioGratis = document.getElementById('filtro-envio-gratis');
   if (checkboxEnvioGratis) {
@@ -303,8 +324,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   actualizarContadorCarrito();
 
-  const carritoIcono = document.getElementById('carrito-icono');
-  if (carritoIcono) {
-    carritoIcono.addEventListener('click', mostrarCarrito);
-  }
 });

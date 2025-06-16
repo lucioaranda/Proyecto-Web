@@ -108,9 +108,11 @@ footer {
 }
 
 .price {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #000;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-weight: bold;
 }
 .product-card img {
     width: 100%;
@@ -395,6 +397,15 @@ footer {
   border-radius: 4px;
   font-weight: bold;
   z-index: 1;
+}
+
+.tachado {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.ahora {
+  font-weight: bold;
 }
 
 
