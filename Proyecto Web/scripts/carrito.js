@@ -22,10 +22,17 @@ function mostrarCarrito() {
 
     card.innerHTML = `
       <img src="${producto.imagenUrl}" alt="${producto.nombre}">
+      <p class="brand">${producto.marca || ''}</p>
       <h3>${producto.nombre}</h3>
       <p>Precio unitario: $${precioUnitario}</p>
-      <p>Cantidad: ${producto.cantidad}</p>
-      <button class="btn-eliminar" data-index="${index}">Eliminar</button>
+      <div class="actions">
+        <div class="counter">
+          <button class="btn-minum" data-index="${index}">−</button>
+          <span class="quantity">${producto.cantidad}</span>
+          <button class="btn-plus" data-index="${index}">+</button>
+        </div>
+        <button class="btn-delete" data-index="${index}">Eliminar</button>
+      </div>
     `;
 
     listaCarrito.appendChild(card);
@@ -34,16 +41,35 @@ function mostrarCarrito() {
 
   totalElement.textContent = total.toFixed(2);
 
-  document.querySelectorAll('.btn-eliminar').forEach(btn => {
+  document.querySelectorAll('.btn-plus').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const index = e.target.dataset.index;
-      eliminarProducto(index);
+      carrito[index].cantidad++;
+      actualizarCarrito();
+    });
+  });
+
+  document.querySelectorAll('.btn-minum').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const index = e.target.dataset.index;
+      if (carrito[index].cantidad > 1) {
+        carrito[index].cantidad--;
+        actualizarCarrito();
+      }
+      
+    });
+  });
+
+  document.querySelectorAll('.btn-delete').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const index = e.target.dataset.index;
+      carrito.splice(index, 1);
+      actualizarCarrito();
     });
   });
 }
 
-function eliminarProducto(index) {
-  carrito.splice(index, 1);
+function actualizarCarrito() {
   localStorage.setItem('carrito', JSON.stringify(carrito));
   mostrarCarrito();
 }

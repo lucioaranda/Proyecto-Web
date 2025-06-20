@@ -167,25 +167,11 @@ footer {
 
 .actions {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
     gap: 8px;
 }
-.counter {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    overflow: hidden;
-}
-.counter button {
-    background-color: #e0e0e0;
-    border: none;
-    padding: 6px 10px;
-    font-size: 16px;
-    cursor: pointer;
-}
+
 .btn-buy {
     background-color: #28a745;
     color: white;
@@ -291,33 +277,6 @@ footer {
     outline: none;
     background-color: #fff;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .counter .btn-minum{
-    background-color: #d82020;
-    color: #f0f0f0;
-    font-weight: 800;
-    font-size: 15px;
-  }
-
-  .btn-minum:hover{
-    background-color: #b11c1c;
-  }
-
-  .counter .btn-plus{
-    background-color: #28a745;
-    color: #f0f0f0;
-    font-weight: 800;
-    font-size: 15px;
-  }
-
-  .btn-plus:hover {
-    background-color:#218838;
-  }
-
-  .counter .quantity{
-    width: 15px;
-    text-align: center;
   }
 
   .pagination-controls {

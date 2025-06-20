@@ -78,31 +78,25 @@ function mostrarPagina(numeroPagina) {
         }
       </p>
       <div class="actions">
-        <div class="counter">
-          <button class="btn-minum">-</button>
-          <span class="quantity">1</span>
-          <button class="btn-plus">+</button>
-        </div>
         <button class="btn-buy">Comprar</button>
       </div>
     `;
 
-    
-card.addEventListener('click', (e) => {
-  if (e.target.closest('button') || e.target.closest('.counter')) {
-    return;
-  }
-  window.location.href = `detalle.html?id=${producto.id}`;
-});
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('button')) {
+      
+        return;
+      }
+      window.location.href = `detalle.html?id=${producto.id}`;
+    });
 
     const btnComprar = card.querySelector('.btn-buy');
     btnComprar.addEventListener('click', () => {
-      const cantidad = parseInt(card.querySelector('.quantity').textContent) || 1;
       agregarAlCarrito({
         nombre: producto.nombre,
         marca: producto.marca,
         precio: producto.oferta || producto.precio,
-        cantidad: cantidad,
+        cantidad: 1, 
         imagenUrl: producto.imagenUrl
       });
     });
@@ -110,7 +104,6 @@ card.addEventListener('click', (e) => {
     productGrid.appendChild(card);
   });
 
-  aplicarEventosContadores();
   actualizarControlesPaginacion();
 }
 
@@ -178,30 +171,6 @@ function actualizarControlesPaginacion() {
   }
 }
 
-function aplicarEventosContadores() {
-  const counters = document.querySelectorAll('.counter');
-
-  counters.forEach(counter => {
-    const btnMinus = counter.querySelector('.btn-minum');
-    const btnPlus = counter.querySelector('.btn-plus');
-    const quantity = counter.querySelector('.quantity');
-
-    if (!btnMinus || !btnPlus || !quantity) return;
-
-    btnPlus.addEventListener('click', () => {
-      let currentValue = parseInt(quantity.textContent) || 1;
-      quantity.textContent = currentValue + 1;
-    });
-
-    btnMinus.addEventListener('click', () => {
-      let currentValue = parseInt(quantity.textContent) || 1;
-      if (currentValue > 1) {
-        quantity.textContent = currentValue - 1;
-      }
-    });
-  });
-}
-
 function aplicarFiltrosYOrden() {
   const searchInput = document.querySelector('.search-filter input[type="text"]');
   const filtroTexto = searchInput ? searchInput.value.toLowerCase() : '';
@@ -247,7 +216,6 @@ function agregarAlCarrito(productoNuevo) {
     carrito.push(productoNuevo);
   }
   guardarCarrito();
-  alert(`Se agregaron ${productoNuevo.cantidad} unidad(es) de ${productoNuevo.nombre} al carrito.`);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
