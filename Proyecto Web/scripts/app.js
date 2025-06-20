@@ -9,8 +9,6 @@ async function cargarProductosDesdeAirtable() {
   const apiUrl = 'https://api.airtable.com/v0/appPMktlLjM6I2FCD/tblrC3aTm2KIN2E9s';
   const apiKey = 'patU5qeiI8CO9vDSJ.257a51187209cb32dc01fdcf2e9960e72b8a7a472d49511bff61b5b736c77862';
 
-  const productGrid = document.querySelector('.product-grid'); 
-
   try {
     const response = await fetch(apiUrl, {
       headers: {
@@ -28,10 +26,11 @@ async function cargarProductosDesdeAirtable() {
     productos = data.records.map(record => {
       const fields = record.fields;
       return {
+        id: record.id,
         nombre: fields.Nombre || 'Sin nombre',
         marca: fields.Marca || 'Sin marca',
         precio: typeof fields.Precio === 'number' ? fields.Precio.toFixed(0) : 'N/A',
-        imagenUrl: (fields.Imagen && fields.Imagen[0]?.url) || 'img\'s/no-image.png',
+        imagenUrl: (fields.Imagen && fields.Imagen[0]?.url) || "img's/no-image.png",
         envioGratis: Boolean(fields.DeliveryFree),
         oferta: fields.Oferta || null
       };
@@ -65,30 +64,36 @@ function mostrarPagina(numeroPagina) {
     const card = document.createElement('article');
     card.className = 'product-card';
 
-   card.innerHTML = `
-    ${producto.envioGratis ? '<div class="envio-gratis-label">DeliveryFree</div>' : ''}
-    <img src="${producto.imagenUrl}" alt="${producto.nombre}">
-    <h4 class="brand">${producto.marca}</h4>
-    <h3 class="title-product">${producto.nombre}</h3>
-    <p class="price">
-      ${
-        producto.oferta
-        ? `<span class="antes">Antes: <span class="tachado">$${producto.precio}</span></span>
-           <span class="ahora">Ahora: $${producto.oferta}</span>`
-        : `Precio: $${producto.precio}`
-      }
-    </p>
-    <div class="actions">
-      <div class="counter">
-        <button class="btn-minum">-</button>
-        <span class="quantity">1</span>
-        <button class="btn-plus">+</button>
+    card.innerHTML = `
+      ${producto.envioGratis ? '<div class="envio-gratis-label">DeliveryFree</div>' : ''}
+      <img src="${producto.imagenUrl}" alt="${producto.nombre}">
+      <h4 class="brand">${producto.marca}</h4>
+      <h3 class="title-product">${producto.nombre}</h3>
+      <p class="price">
+        ${
+          producto.oferta
+          ? `<span class="antes">Antes: <span class="tachado">$${producto.precio}</span></span>
+             <span class="ahora">Ahora: $${producto.oferta}</span>`
+          : `Precio: $${producto.precio}`
+        }
+      </p>
+      <div class="actions">
+        <div class="counter">
+          <button class="btn-minum">-</button>
+          <span class="quantity">1</span>
+          <button class="btn-plus">+</button>
+        </div>
+        <button class="btn-buy">Comprar</button>
       </div>
-      <button class="btn-buy">Comprar</button>
-    </div>
-  `;
+    `;
 
-    productGrid.appendChild(card);
+    
+card.addEventListener('click', (e) => {
+  if (e.target.closest('button') || e.target.closest('.counter')) {
+    return;
+  }
+  window.location.href = `detalle.html?id=${producto.id}`;
+});
 
     const btnComprar = card.querySelector('.btn-buy');
     btnComprar.addEventListener('click', () => {
@@ -101,6 +106,8 @@ function mostrarPagina(numeroPagina) {
         imagenUrl: producto.imagenUrl
       });
     });
+
+    productGrid.appendChild(card);
   });
 
   aplicarEventosContadores();
@@ -246,17 +253,19 @@ function agregarAlCarrito(productoNuevo) {
 document.addEventListener('DOMContentLoaded', () => {
   const envioGratisCheckbox = document.getElementById('filtro-envio-gratis');
   const filtroOfertaCheckbox = document.getElementById('filtro-oferta');
+
   if (filtroOfertaCheckbox) {
     filtroOfertaCheckbox.addEventListener('change', aplicarFiltrosYOrden);
   }
+  if (envioGratisCheckbox) {
+    envioGratisCheckbox.addEventListener('change', aplicarFiltrosYOrden);
+  }
+
   cargarProductosDesdeAirtable();
 
   const searchInput = document.querySelector('.search-filter input[type="text"]');
   if (searchInput) {
     searchInput.addEventListener('input', aplicarFiltrosYOrden);
-  }
-    if (envioGratisCheckbox) {  
-    envioGratisCheckbox.addEventListener('change', aplicarFiltrosYOrden);
   }
 
   const sortSelect = document.getElementById('sort-select');
