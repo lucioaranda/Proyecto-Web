@@ -32,7 +32,7 @@ async function cargarProductosDesdeAirtable() {
         marca: fields.Marca || 'Sin marca',
         precio: typeof fields.Precio === 'number' ? fields.Precio.toFixed(0) : 'N/A',
         imagenUrl: (fields.Imagen && fields.Imagen[0]?.url) || 'img\'s/no-image.png',
-        envioGratis: fields.EnvioGratis === true,
+        envioGratis: Boolean(fields.DeliveryFree),
         oferta: fields.Oferta || null
       };
     });
@@ -66,7 +66,7 @@ function mostrarPagina(numeroPagina) {
     card.className = 'product-card';
 
    card.innerHTML = `
-    ${producto.envioGratis ? '<div class="envio-gratis-label">Delivery Free</div>' : ''}
+    ${producto.envioGratis ? '<div class="envio-gratis-label">DeliveryFree</div>' : ''}
     <img src="${producto.imagenUrl}" alt="${producto.nombre}">
     <h4 class="brand">${producto.marca}</h4>
     <h3 class="title-product">${producto.nombre}</h3>
@@ -244,21 +244,19 @@ function agregarAlCarrito(productoNuevo) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  const envioGratisCheckbox = document.getElementById('filtro-envio-gratis');
   const filtroOfertaCheckbox = document.getElementById('filtro-oferta');
   if (filtroOfertaCheckbox) {
     filtroOfertaCheckbox.addEventListener('change', aplicarFiltrosYOrden);
   }
-
-  const checkboxEnvioGratis = document.getElementById('filtro-envio-gratis');
-  if (checkboxEnvioGratis) {
-    checkboxEnvioGratis.addEventListener('change', aplicarFiltrosYOrden);
-  }
-
   cargarProductosDesdeAirtable();
 
   const searchInput = document.querySelector('.search-filter input[type="text"]');
   if (searchInput) {
     searchInput.addEventListener('input', aplicarFiltrosYOrden);
+  }
+    if (envioGratisCheckbox) {  
+    envioGratisCheckbox.addEventListener('change', aplicarFiltrosYOrden);
   }
 
   const sortSelect = document.getElementById('sort-select');
