@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Veterinaria</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="estilos/cuenta.css" />
+  <link rel="icon" href="img's/icono-vet-2.png" type="image/png" />
+  <script src="scripts/app.js" defer></script>
+</head>
+<body>
+  <div class="header-container">
+    <header>
+      <h1>
+        <a href="index.html">
+        <img src="img's/icono-vet-2.png" class="icono-vet" id="home">
+        Veterinaria
+        </a>
+    </h1>
+      <nav>
+        <ul class="top-menu">
+          <li class="nav_1 login-hover">
+            <span class="material-symbols-outlined">Person</span>
+            <div class="login-box">
+              <form id="login-form">
+                <label for="email" class="letter">Email:</label>
+                <input type="email" id="email" placeholder="ejemplo@correo.com" />
+                <label for="password" class="letter">Contraseña:</label>
+                <input type="password" id="password" placeholder="********" />
+                <button type="submit">Iniciar sesión</button>
+              </form>
+              <div class="crear-cuenta">
+                <a href="cuenta.html">Crear cuenta</a>
+              </div>
+            </div>
+            <div id="nombre-usuario" class="nombre-usuario"></div>
+          </li>
+          <li class="nav_1">
+            <a href="contacto.html" class="tooltip">
+              <span class="text-balloon">Contactanos</span>
+              <span class="material-symbols-outlined">mail</span>
+            </a>
+          </li>
+          <li class="carrito-icono">
+            <a href="carrito.html" id="carrito-icono" class="icon-c">
+              <span class="material-symbols-outlined">shopping_cart</span>
+              <span id="carrito-cantidad" class="carrito-cantidad">0</span>
+            </a>
+          </li>
+          <li class="nav_1">
+            <a href="form_carga_p.html">
+              <span class="material-symbols-outlined">Upload</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+<div class="centro-pantalla">
+  <div class="container">
+    <h2>Crear Cuenta</h2>
+    <form class="registro-form">
+      <label for="reg-nombre">Nombre:</label>
+      <input type="text" class="reg-nombre" name="nombre" required />
+
+      <label for="reg-apellido">Apellido:</label>
+      <input type="text" class="reg-apellido" name="apellido" required />
+
+      <label for="reg-email">Email:</label>
+      <input type="email" class="reg-email" name="email" required />
+
+      <label for="reg-password">Contraseña:</label>
+      <input type="password" class="reg-password" name="password" required />
+
+      <label for="repetir-password">Repetir Contraseña:</label>
+      <input type="password" class="repetir-password" name="repetir-password" required />
+
+      <label for="reg-telefono">Teléfono:</label>
+      <input type="tel" class="reg-telefono" name="telefono" required />
+
+      <fieldset>
+        <legend>Tipo de usuario:</legend>
+        <label>
+          <input type="checkbox" name="tipoUsuario" value="cliente" />
+          Cliente
+        </label>
+        <label>
+          <input type="checkbox" name="tipoUsuario" value="vendedor" />
+          Vendedor
+        </label>
+      </fieldset>
+
+      <button type="submit">Crear cuenta</button>
+    </form>
+  </div>
+  </div>
+
+</body>
+</html>

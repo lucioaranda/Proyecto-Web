@@ -147,31 +147,31 @@ body {
   font-weight: 600;
 }
 
-#precio-producto {
+.precio-producto {
   font-size: 1.5rem;
   color: #E53935;
   font-weight: 800;
 }
 
-#envio-producto {
+.envio-producto {
   color: #2E7D32;
   font-weight: 700;
   font-size: 1rem;
 }
-#precio-producto span {
+.precio-producto span {
   font-size: 1.5rem;
   display: inline-block;
   vertical-align: middle;
 }
 
-#precio-producto span:first-child {
+.precio-producto span:first-child {
   text-decoration: line-through;
   color: #999;
   margin-right: 12px;
   font-weight: normal;
 }
 
-#precio-producto span:last-child {
+.precio-producto span:last-child {
   color: #E53935;
   font-weight: 800;
 }

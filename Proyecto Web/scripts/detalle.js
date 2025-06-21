@@ -27,10 +27,10 @@ async function cargarDetalleProducto() {
       throw new Error('Producto no encontrado');
     }
 
-    document.getElementById('nombre-producto').textContent = data.fields.Nombre || 'Sin nombre';
-    document.getElementById('marca-producto').textContent = data.fields.Marca || 'Sin marca';
+    document.querySelector('.nombre-producto').textContent = data.fields.Nombre || 'Sin nombre';
+    document.querySelector('.marca-producto').textContent = data.fields.Marca || 'Sin marca';
 
-    const precioElement = document.getElementById('precio-producto');
+    const precioElement = document.querySelector('.precio-producto');
     if (data.fields.Oferta) {
       const precioOriginal = data.fields.Precio ? `$${data.fields.Precio}` : '';
       const precioOferta = `$${data.fields.Oferta}`;
@@ -42,14 +42,14 @@ async function cargarDetalleProducto() {
       precioElement.textContent = data.fields.Precio ? `$${data.fields.Precio}` : 'Sin precio';
     }
 
-    document.getElementById('descripcion-producto').textContent = data.fields.Descripcion || 'Sin descripción';
-    document.getElementById('envio-producto').textContent = data.fields.DeliveryFree ? 'Envío gratis' : '';
+    document.querySelector('.descripcion-producto').textContent = data.fields.Descripcion || 'Sin descripción';
+    document.querySelector('.envio-producto').textContent = data.fields.DeliveryFree ? 'Envío gratis' : '';
 
     if (data.fields.Imagen && data.fields.Imagen[0]?.url) {
-      document.getElementById('imagen-producto').src = data.fields.Imagen[0].url;
-      document.getElementById('imagen-producto').alt = data.fields.Nombre || 'Imagen del producto';
+      document.querySelector('.imagen-producto').src = data.fields.Imagen[0].url;
+      document.querySelector('.imagen-producto').alt = data.fields.Nombre || 'Imagen del producto';
     } else {
-      document.getElementById('imagen-producto').src = "img's/no-image.png";
+      document.querySelector('.imagen-producto').src = "img's/no-image.png";
     }
 
   } catch (error) {
