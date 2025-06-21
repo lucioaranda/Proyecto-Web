@@ -330,11 +330,10 @@ footer {
     opacity: 0;
     position: absolute;
     top: 100%;
-    left: 50%;
     transform: translateX(-50%);
     background-color: #635e5e;
     color: #fff;
-    padding: 6px 10px;
+    padding: 10px;
     border-radius: 6px;
     font-size: 12px;
     white-space: nowrap;
@@ -393,6 +392,7 @@ footer {
 
 .login-hover {
     position: relative;
+    cursor: pointer;
 }
 
 .login-box {
@@ -455,8 +455,120 @@ footer {
   font-size: 11px;
   font-family: 'Courier New', Courier, monospace;
 }
+.menu-hover {
+  display: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.menu-box {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  width: 200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+.menu-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-box li {
+  margin-bottom: 10px;
+}
+
+.menu-box li:last-child {
+  margin-bottom: 0;
+}
+
+.menu-box a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
 
 
+.menu-box a:hover {
+  color: #5e5959;
+}
+
+.menu-box ul li:first-child {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
+.menu-sesion {
+  padding: 12px;
+  text-align: center;
+}
+
+.menu-sesion p {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.menu-sesion button {
+  background-color: #e53935;
+  border: none;
+  color: #fff;
+  padding: 8px 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.menu-sesion button:hover {
+  background-color: #b32a24;
+}
+
+.login-box-logged-in {
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+  height: 70px;            
+  padding: 15px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  width: 200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+#btn-logout {
+  background-color: #e53935; 
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+  height: 40px;
+  max-width: 180px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+#btn-logout:hover {
+  background-color: #b32a24; 
+}
 
 
 @media (max-width: 1200px) {

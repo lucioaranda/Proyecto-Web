@@ -234,3 +234,9 @@ h1 a {
 .container h2{
     margin-left: 140px;
 }
+.mensaje-error {
+  color: #9e1515;
+  font-size: 0.9em;
+  margin-top: 4px;
+  display: block;
+}

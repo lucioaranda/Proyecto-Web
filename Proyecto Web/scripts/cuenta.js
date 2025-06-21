@@ -4,10 +4,12 @@ const apiUrl = 'https://api.airtable.com/v0/appPMktlLjM6I2FCD/tblKZPYEmL0TT49LJ'
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.registro-form');
   const errorPassword = document.getElementById('error-password');
+  const errorTipo = document.getElementById('error-tipo');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    errorPassword.textContent = ''; 
+    errorPassword.textContent = '';
+    errorTipo.textContent = '';
 
     const nombre = document.querySelector('.reg-nombre').value.trim();
     const apellido = document.querySelector('.reg-apellido').value.trim();
@@ -18,13 +20,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const tipoCliente = form.querySelector('input[value="cliente"]').checked;
     const tipoVendedor = form.querySelector('input[value="vendedor"]').checked;
 
+   
     if (password !== repetirPassword) {
       errorPassword.textContent = '⚠️ Las contraseñas no coinciden.';
       return;
     }
 
+   
     if (!tipoCliente && !tipoVendedor) {
-      alert('Seleccioná al menos un tipo de usuario.');
+      errorTipo.textContent = '⚠️ Seleccioná al menos un tipo de usuario.';
+      return;
+    }
+
+    if (tipoCliente && tipoVendedor) {
+      errorTipo.textContent = '⚠️ Seleccioná solo un tipo de usuario.';
       return;
     }
 

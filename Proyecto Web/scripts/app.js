@@ -147,7 +147,39 @@ async function autenticarUsuario(email, contraseña) {
   }
 }
 
+function mostrarMenuUsuarioLogueado(usuario) {
+  const loginBoxOut = document.querySelector('.login-box-logged-out');
+  const loginBoxIn = document.querySelector('.login-box-logged-in');
+  const nombreDiv = document.getElementById('nombre-usuario');
+  const menuIcon = document.querySelector('.menu-hover'); 
+
+  
+  loginBoxOut.style.display = 'none';
+  loginBoxIn.style.display = 'none';
+
+  if (usuario) {
+    nombreDiv.textContent = usuario.Nombre;
+
+
+    if (usuario.Vendedor === true) {
+      menuIcon.style.display = 'inline-block';
+    } else {
+      menuIcon.style.display = 'none';
+    }
+  } else {
+    nombreDiv.textContent = '';
+    menuIcon.style.display = 'none'; 
+  }
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
+
+  function cerrarSesion() {
+    localStorage.removeItem('usuario');
+    mostrarMenuUsuarioLogueado(null);
+  }
+
   ['filtro-envio-gratis','filtro-oferta','input-search-products'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.addEventListener(id === 'input-search-products' ? 'input' : 'change', aplicarFiltrosYOrden);
@@ -159,17 +191,18 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('sort-select')?.addEventListener('change', () => {
     const opt = document.getElementById('sort-select').value;
     if (opt === 'precio-desc') productosFiltrados.sort((a, b) => a.precio - b.precio);
-    if (opt === 'precio-asc') productosFiltrados.sort((a, b) => b.precio - a.precio);
-    if (opt === 'relevantes') productosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    else if (opt === 'precio-asc') productosFiltrados.sort((a, b) => b.precio - a.precio);
+    else if (opt === 'relevantes') productosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
     paginaActual = 1;
     mostrarPagina(paginaActual);
   });
 
-  const nombreDiv = document.getElementById('nombre-usuario');
   const guardado = localStorage.getItem('usuario');
   if (guardado) {
     const usr = JSON.parse(guardado);
-    nombreDiv.textContent = usr.Nombre;
+    mostrarMenuUsuarioLogueado(usr);
+  } else {
+    mostrarMenuUsuarioLogueado(null);
   }
 
   const form = document.getElementById('login-form');
@@ -183,12 +216,62 @@ document.addEventListener('DOMContentLoaded', () => {
       const u = await autenticarUsuario(email, pass);
       if (u) {
         localStorage.setItem('usuario', JSON.stringify(u));
-        nombreDiv.textContent = u.Nombre;
+        mostrarMenuUsuarioLogueado(u);
         form.reset();
-        document.querySelector('.login-box').style.display = 'none';
       } else {
         alert('Email o contraseña incorrecta');
       }
     });
   }
+
+  const btnLogout = document.getElementById('btn-logout');
+  btnLogout?.addEventListener('click', cerrarSesion);
+
+  const loginHover = document.querySelector('.login-hover');
+  const loginBoxOut = document.querySelector('.login-box-logged-out');
+  const loginBoxIn = document.querySelector('.login-box-logged-in');
+
+  loginHover?.addEventListener('click', (e) => {
+    e.stopPropagation();
+
+    if (loginBoxIn.style.display === 'block') {
+      loginBoxIn.style.display = 'none';
+    } else if (loginBoxOut.style.display === 'block') {
+      loginBoxOut.style.display = 'none';
+    } else {
+      const usuarioGuardado = localStorage.getItem('usuario');
+      if (usuarioGuardado) {
+        loginBoxIn.style.display = 'block';
+        loginBoxOut.style.display = 'none';
+      } else {
+        loginBoxOut.style.display = 'block';
+        loginBoxIn.style.display = 'none';
+      }
+    }
+  });
+
+  loginBoxOut?.addEventListener('click', (e) => e.stopPropagation());
+  loginBoxIn?.addEventListener('click', (e) => e.stopPropagation());
+
+  document.addEventListener('click', (e) => {
+    if (!loginHover.contains(e.target)) {
+      loginBoxOut.style.display = 'none';
+      loginBoxIn.style.display = 'none';
+    }
+  });
+
+  const menuHover = document.querySelector('.menu-hover');
+  const menuBox = document.querySelector('.menu-box');
+
+  menuHover?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    menuBox.style.display = menuBox.style.display === 'block' ? 'none' : 'block';
+  });
+
+  menuBox?.addEventListener('click', (e) => e.stopPropagation());
+  document.addEventListener('click', (e) => {
+    if (!menuHover.contains(e.target)) {
+      menuBox.style.display = 'none';
+    }
+  });
 });
