@@ -75,10 +75,9 @@ function actualizarCarrito() {
 }
 
 document.getElementById('finalizar-compra').addEventListener('click', () => {
-  alert('¡Gracias por tu compra!');
   carrito = [];
   localStorage.setItem('carrito', JSON.stringify(carrito));
-  mostrarCarrito();
+  window.location.href = 'index.html';
 });
 
 mostrarCarrito();

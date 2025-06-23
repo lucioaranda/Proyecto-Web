@@ -14,6 +14,11 @@ header{
     align-items: center;
     
 }
+h1 a{
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
 .top-menu{
     font-size: 15px;
     list-style: none;
@@ -208,7 +213,7 @@ nav{
     position: absolute;
     top: 100%;
     transform: translateX(-50%);
-    background-color: #635e5e;
+    background-color: #3DC1A9;
     color: #fff;
     padding: 10px;
     border-radius: 6px;
@@ -217,48 +222,94 @@ nav{
     transition: opacity 0.3s ease;
     z-index: 10;
 }
-
-.tabla {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  color: #333;
+.nombre-usuario {
+  color: #fff;
+  font-size: 11px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-.tabla thead {
-  background-color: #3DC1A9; 
-  color: white;
+.registro-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 400px;
 }
 
-.tabla thead th {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 2px solid #2A8B7D;
+.registro-form label {
+    font-weight: 600;
+    color: #090909;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
 }
 
-.tabla tbody tr:nth-child(even) {
-  background-color: #f3f7f6; 
-}
-.tabla tbody tr:hover {
-  background-color: #c8e7e3; 
-}
-
-.tabla tbody td {
-  padding: 8px 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.tabla button {
-  padding: 6px 12px;
-  border: none;
-  background-color: #3DC1A9;
-  color: white;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+.registro-form input[type="text"],
+.registro-form input[type="email"],
+.registro-form input[type="password"],
+.registro-form input[type="tel"] {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.2s;
 }
 
-.tabla button:hover {
-  background-color: #2A8B7D;
+.registro-form input:focus {
+    border: 2px solid #000;
+}
+
+.registro-form fieldset {
+    border: none;
+    margin-top: 10px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.registro-form legend {
+    font-weight: 600;
+    font-size: 14px;
+    color: #090909;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.registro-form input[type="checkbox"] {
+    margin-right: 6px;
+}
+
+.registro-form button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.registro-form button:hover {
+    background-color: #218838;
+}
+.centro-pantalla {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container h2{
+    margin-left: 140px;
+}
+.mensaje-error {
+  color: #9e1515;
+  font-size: 0.9em;
+  margin-top: 4px;
+  display: block;
 }

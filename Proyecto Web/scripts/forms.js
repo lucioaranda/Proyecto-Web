@@ -97,8 +97,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const exito = await guardarProductoEnAirtable(producto);
     if (exito) {
-      alert('Producto cargado con éxito');
+      const mensaje = document.createElement('p');
+      mensaje.textContent = 'Producto cargado con éxito';
+      mensaje.style.color = 'green';
+      e.target.appendChild(mensaje);
       e.target.reset();
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1500);
     }
   });
 });
