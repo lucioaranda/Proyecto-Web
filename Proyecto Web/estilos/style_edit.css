@@ -267,3 +267,8 @@ h1 a{
   text-decoration: none;
   cursor: pointer;
 }
+.login-box-logged-in,
+.login-box-logged-out,
+.menu-box {
+  display: none;
+}

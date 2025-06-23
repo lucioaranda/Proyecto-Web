@@ -48,11 +48,11 @@ function mostrarMenuUsuarioLogueado(usuario) {
     } else {
       if (menuIcon) menuIcon.style.display = 'none';
     }
-    if (loginBoxIn) loginBoxIn.style.display = 'block';
+
   } else {
     if (nombreDiv) nombreDiv.textContent = '';
     if (menuIcon) menuIcon.style.display = 'none';
-    if (loginBoxOut) loginBoxOut.style.display = 'block';
+  
   }
 }
 
