@@ -1,0 +1,264 @@
+@import url(https://fonts.googleapis.com/css2);
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI',Verdana, Geneva, Tahoma, sans-serif;
+}
+header{
+    background-color: #091437;
+    color: #f7f7f7;
+    padding: 9px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.top-menu{
+    font-size: 15px;
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+.top-menu a {
+    color: #f0f0f0;
+    text-decoration: none;
+}
+.icono-vet{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+nav{
+    max-width: 900px;
+    margin: 1px;
+    background-color: #091437;
+    font-size: 20px;
+}
+.menu-hover {
+  display: none;
+  position: relative;
+  cursor: pointer;
+}
+.material-symbols-outlined {
+  font-variation-settings: 
+    "FILL" 0,       
+    "wght" 400,      
+    "GRAD" 0,        
+    "opsz" 24;       
+  font-size: 30px;   
+  color: #3DC1A9;
+  margin-top: 7px;  
+}
+.menu-box {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  width: 200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+.menu-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu-box li {
+  margin-bottom: 10px;
+}
+.menu-box li:last-child {
+  margin-bottom: 0;
+}
+.menu-box a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+.menu-box a:hover {
+  color: #5e5959;
+}
+.menu-box ul li:first-child {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+.menu-sesion p {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.menu-sesion button {
+  background-color: #e53935;
+  border: none;
+  color: #fff;
+  padding: 8px 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+.menu-sesion button:hover {
+  background-color: #b32a24;
+}
+.login-hover {
+    position: relative;
+    cursor: pointer;
+}
+.login-hover:hover .login-box {
+    display: block;
+}
+.login-box {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    width: 220px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+.login-box form {
+    display: flex;
+    flex-direction: column;
+}
+.login-box input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+.login-box button {
+    padding: 8px;
+    background-color: #14b263;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.crear-cuenta {
+    margin-top: 10px;
+    text-align: center;
+}
+.crear-cuenta a {
+    color: #050505;
+    font-size: 14px;
+    text-decoration: none;
+}
+.crear-cuenta a:hover{
+    color:#5e5959 ;
+}
+.letter{
+    color: #000000;
+}
+.nombre-usuario {
+  color: #fff;
+  font-size: 11px;
+  font-family: 'Courier New', Courier, monospace;
+}
+.carrito-icono{
+    cursor: pointer;
+    position: relative;
+}
+.icon-c {
+  font-size: 1.5rem; 
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #333; 
+  text-decoration: none;
+}
+.carrito-cantidad{
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: #E53935;
+    color: #f0f0f0;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+.tooltip:hover .text-balloon {
+    visibility: visible;
+    opacity: 1;
+}
+
+.icono-nav{
+    height: 40px;
+    width: 50px;
+}
+.text-balloon {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    transform: translateX(-50%);
+    background-color: #635e5e;
+    color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.tabla thead {
+  background-color: #3DC1A9; 
+  color: white;
+}
+
+.tabla thead th {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid #2A8B7D;
+}
+
+.tabla tbody tr:nth-child(even) {
+  background-color: #f3f7f6; 
+}
+.tabla tbody tr:hover {
+  background-color: #c8e7e3; 
+}
+
+.tabla tbody td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla button {
+  padding: 6px 12px;
+  border: none;
+  background-color: #3DC1A9;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.tabla button:hover {
+  background-color: #2A8B7D;
+}

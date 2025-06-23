@@ -1,6 +1,7 @@
 const apiUrlBase = 'https://api.airtable.com/v0/appPMktlLjM6I2FCD/tblrC3aTm2KIN2E9s';
 const apiKey = 'patU5qeiI8CO9vDSJ.257a51187209cb32dc01fdcf2e9960e72b8a7a472d49511bff61b5b736c77862';
 
+
 async function cargarDetalleProducto() {
   const urlParams = new URLSearchParams(window.location.search);
   const idProducto = urlParams.get('id');

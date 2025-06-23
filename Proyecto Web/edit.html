@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Veterinaria</title>
+    <title>Editar producto</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24..48,100..700,0..1,-50..200" rel="stylesheet" />
-    <link rel="stylesheet" href="estilos/styles.css" />
+    <link rel="stylesheet" href="estilos/edit.css" />
     <link rel="icon" href="img's/icono-vet-2.png" type="image/png" />
-    <script src="scripts/app.js" defer></script>
+    <script src="scripts/comun.js" defer></script>
+    <script src="scripts/edit.js" defer></script>
 </head>
 <body>
-<div class="header-container">
     <header>
         <h1><img src="img's/icono-vet-2.png" class="icono-vet" id="home" alt="Icono Veterinaria" />Veterinaria</h1>
         <nav>
             <ul class="top-menu">
-                <li class="menu-hover">
+                <li class="nav_1 menu-hover">
                     <span class="material-symbols-outlined" id="menu-icon">menu</span>
                     <div class="menu-box">
                         <ul>
@@ -26,7 +26,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="edit.html" class="menu-link">
+                                <a href="editar_productos.html" class="menu-link">
                                     <span class="material-symbols-outlined">edit</span>
                                     Editar productos
                                 </a>
@@ -73,44 +73,21 @@
             </ul>
         </nav>
     </header>
-</div>
-<div class="container">
-    <aside>
-        <h2>Filtros</h2>
-        <div class="search-filter">
-            <input id="input-search-products" type="text" placeholder="Buscar Productos" />
-        </div>
-        <div class="redirectional-filters">
-            <div class="slide-box">
-                <span>Ofertas</span>
-                <label class="slide">
-                    <input type="checkbox" id="filtro-oferta" />
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div class="slide-box">
-                <span>Envío gratis</span>
-                <label class="slide">
-                    <input type="checkbox" id="filtro-envio-gratis" />
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div class="filter-menu">
-                <label for="ordenar" class="order">Ordenar por:</label>
-                <select id="sort-select" name="ordenar">
-                    <option value="relevantes">Más relevantes</option>
-                    <option value="precio-asc">Mayor precio</option>
-                    <option value="precio-desc">Menor precio</option>
-                </select>
-            </div>
-        </div>
-    </aside>
-    <main class="container" id="main">
-        <section class="product-grid"></section>
-    </main>
-</div>
-<footer>
-    <p>Todos los derechos reservados &copy;</p>
-</footer>
+    <table id="tabla-productos" class="tabla">
+  <thead>
+    <tr>
+      <th>Marca</th>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Delivery Free</th>
+      <th>Descripcion</th>
+      <th>Oferta</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+ 
+  </tbody>
+</table>
+
 </body>
-</html>
