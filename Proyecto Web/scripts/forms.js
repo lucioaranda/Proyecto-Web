@@ -87,11 +87,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const nombre = document.getElementById('nombre').value.trim();
     const productName = document.getElementById('product-name').value.trim();
     const precio = parseFloat(document.getElementById('precio').value);
+    const descripcion = document.getElementById('descripcion').value.trim();
 
     const producto = {
       Nombre: productName,
       Marca: nombre,
       Precio: precio,
+      Descripcion: descripcion,
       Imagen: [{ url: urlImagen }]
     };
 

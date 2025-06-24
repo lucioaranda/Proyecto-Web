@@ -218,31 +218,6 @@ nav{
     z-index: 10;
 }
 
-.info-producto {
-  flex: 1;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-weight: bold; 
-}
-
-.info-producto h1 {
-  font-size: 2.5rem;
-  color: #091437;
-  font-weight: 800;
-  margin-bottom: 15px;
-  position: relative;
-  line-height: 1.2;
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.info-producto h3 {
-  font-size: 1.2rem;
-  color: #626464;
-  font-weight: 700;
-}
-
 .info-producto p {
   font-size: 1rem;
   color: #444;
@@ -250,17 +225,6 @@ nav{
   font-weight: 600;
 }
 
-.precio-producto {
-  font-size: 1.5rem;
-  color: #E53935;
-  font-weight: 800;
-}
-
-.envio-producto {
-  color: #2E7D32;
-  font-weight: 700;
-  font-size: 1rem;
-}
 .precio-producto span {
   font-size: 1.5rem;
   display: inline-block;
