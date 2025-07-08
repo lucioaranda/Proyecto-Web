@@ -165,3 +165,73 @@ header a:hover {
   background-color: #c0392b;
 }
 
+
+@media (max-width: 1200px) {
+  #lista-carrito {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+@media (max-width: 900px) {
+  #lista-carrito {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #resumen-compra {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  #resumen-compra p {
+    margin-bottom: 0;
+  }
+
+  #finalizar-compra {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .carrito-container {
+    padding: 1rem;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .btn-seguir-comprando {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+  }
+
+  #lista-carrito {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .counter {
+    justify-content: space-between;
+  }
+
+  .btn-delete {
+    width: 100%;
+  }
+
+  #finalizar-compra {
+    font-size: 0.95rem;
+    padding: 0.8rem;
+  }
+}

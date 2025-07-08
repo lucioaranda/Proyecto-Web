@@ -274,3 +274,83 @@ textarea {
 .button:hover {
   background-color: #2a8b7d;
 }
+
+
+@media (max-width: 900px) {
+  .top-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .login-box,
+  .menu-box {
+    right: 10px;
+  }
+
+  .container {
+    margin: 30px auto;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    flex-direction: row;   
+    flex-wrap: wrap;      
+    align-items: center;   
+    padding: 12px;
+    gap: 8px;              
+  }
+
+  h1 a {
+    font-size: 1.4rem;
+  }
+
+  .icono-vet {
+    width: 24px;
+    height: 24px;
+  }
+
+  .top-menu {
+    flex-direction: row;   
+    flex-wrap: wrap;       
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+  }
+
+  .material-symbols-outlined {
+    font-size: 24px;
+  }
+
+  .container {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .form input[type="text"],
+  .form input[type="email"],
+  .form textarea {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .carrito-cantidad {
+    top: -6px;
+    right: -8px;
+    font-size: 10px;
+    padding: 1px 4px;
+  }
+
+  .login-box,
+  .menu-box {
+    width: 95%;
+    right: 2.5%;
+  }
+}

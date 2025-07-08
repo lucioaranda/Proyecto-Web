@@ -291,3 +291,88 @@ h1 a {
 #btn-logout:hover {
   background-color: #b32a24; 
 }
+
+
+@media (max-width: 900px) {
+  .detalle-container {
+    max-width: 100%;
+    margin: 30px 15px;
+    padding: 15px;
+    flex-direction: column; 
+    align-items: center;
+  }
+
+  .detalle-container img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    max-height: none;
+    margin-bottom: 20px;
+  }
+
+  .info-producto {
+    width: 100%;
+    text-align: center;
+  }
+
+  nav {
+    max-width: 100%;
+  }
+}
+
+
+@media (max-width: 600px) {
+  header {
+    flex-direction: row;  
+    flex-wrap: wrap;     
+    align-items: center;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  h1 a {
+    font-size: 1.4rem;
+  }
+
+  .icono-vet {
+    width: 24px;
+    height: 24px;
+  }
+
+  .top-menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+  }
+
+  .material-symbols-outlined {
+    font-size: 24px;
+  }
+
+  .detalle-container {
+    margin: 20px 10px;
+    padding: 15px;
+  }
+
+  .detalle-container img {
+    max-width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .info-producto {
+    text-align: center;
+  }
+
+  .info-producto p,
+  .info-producto h1,
+  .info-producto h3 {
+    font-size: 1rem;
+  }
+
+  #btn-logout {
+    max-width: 100%;
+    height: 40px;
+  }
+}

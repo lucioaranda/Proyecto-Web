@@ -331,3 +331,54 @@ nav{
 #btn-logout:hover {
   background-color: #b32a24; 
 }
+
+@media (max-width: 600px) {
+  header {
+    flex-direction: row; 
+    align-items: center;
+    padding: 12px 10px;
+    gap: 10px;
+    flex-wrap: wrap; 
+  }
+
+  .registro-form {
+    width: 100%;
+    padding: 15px 10px;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .registro-form label,
+  .registro-form input,
+  .registro-form button,
+  .registro-form fieldset {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .registro-form input,
+  .registro-form button {
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+
+  .registro-form fieldset {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .registro-form fieldset label {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+  }
+
+  .container h2 {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .centro-pantalla {
+    padding: 20px 10px;
+  }
+}
