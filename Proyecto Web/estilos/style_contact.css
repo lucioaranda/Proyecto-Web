@@ -348,9 +348,4 @@ textarea {
     padding: 1px 4px;
   }
 
-  .login-box,
-  .menu-box {
-    width: 95%;
-    right: 2.5%;
-  }
 }

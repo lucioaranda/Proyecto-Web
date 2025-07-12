@@ -15,15 +15,21 @@ body{
     color: #333;
     font-size: 16px;
     line-height: 1.5;
+    padding-top: 60px;
 }
-header{
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
     background-color: #091437;
     color: #f7f7f7;
-    padding: 9px;
+    padding: 9px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+    z-index: 1000;
 }
 .icono-vet{
     width: 30px;
@@ -47,6 +53,10 @@ nav{
     text-decoration: none;
 }
 
+a {
+  text-decoration: none; 
+  color: inherit;       
+}
 .container{
     display: flex;
     flex: 1;
