@@ -325,26 +325,6 @@ footer {
     display: inline-block;
 }
 
-.text-balloon {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    top: 100%;
-    transform: translateX(-50%);
-    background-color: #3DC1A9;
-    color: #fff;
-    padding: 10px;
-    border-radius: 6px;
-    font-size: 12px;
-    white-space: nowrap;
-    transition: opacity 0.3s ease;
-    z-index: 10;
-}
-
-.tooltip:hover .text-balloon {
-    visibility: visible;
-    opacity: 1;
-}
 
 .carrito-icono{
     cursor: pointer;
@@ -716,4 +696,8 @@ footer {
         gap: 8px;
     }
 
+    .pagination-controls{
+        display: flex;
+        justify-content: center;
+    }
 }
